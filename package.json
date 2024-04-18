@@ -8,8 +8,7 @@
     "build": "shx rm -rf ./dist/* && tsc",
     "playground": "node playground/index.js",
     "publish": "publish --access public",
-    "release": "changelogen --release --push",
-    "gh:release": "changelogen gh release"
+    "release": "changelogen --release --push"
   },
   "keywords": [
     "instagram",
