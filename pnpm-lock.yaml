@@ -33,7 +33,7 @@ importers:
 
   playground:
     dependencies:
-      snapsave-downloader:
+      snapsave-media-downloader:
         specifier: workspace:*
         version: link:..
 

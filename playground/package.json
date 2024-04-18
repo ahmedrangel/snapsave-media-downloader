@@ -8,6 +8,6 @@
   "main": "index.js",
   "type": "module",
   "dependencies": {
-    "snapsave-downloader": "workspace:*"
+    "snapsave-media-downloader": "workspace:*"
   }
 }

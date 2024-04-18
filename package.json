@@ -1,5 +1,5 @@
 {
-	"name": "snapsave-downloader",
+	"name": "snapsave-media-downloader",
 	"version": "0.0.0",
 	"description": "Download Instagram and Facebook media from snapsave.app",
 	"type": "module",
@@ -31,15 +31,15 @@
   "types": "./dist/index.d.ts",
 	"repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmedrangel/snapsave-downloader.git"
+    "url": "git+https://github.com/ahmedrangel/snapsave-media-downloader.git"
   },
-	"homepage": "https://github.com/ahmedrangel/snapsave-downloader#readme",
+	"homepage": "https://github.com/ahmedrangel/snapsave-media-downloader#readme",
 	"bugs": {
-    "url": "https://github.com/ahmedrangel/snapsave-downloader/issues"
+    "url": "https://github.com/ahmedrangel/snapsave-media-downloader/issues"
   },
 	"changelog": {
     "repo": {
-      "repo": "ahmedrangel/snapsave-downloader",
+      "repo": "ahmedrangel/snapsave-media-downloader",
       "provider": "github",
       "domain": "github.com"
     }
