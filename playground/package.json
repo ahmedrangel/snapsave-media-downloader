@@ -1,0 +1,13 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "keywords": [],
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "snapsave-downloader": "workspace:*"
+  }
+}
