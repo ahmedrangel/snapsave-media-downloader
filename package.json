@@ -1,7 +1,7 @@
 {
   "name": "snapsave-media-downloader",
   "version": "1.0.2",
-  "description": "Download Instagram and Facebook media from snapsave.app",
+  "description": "Download Instagram and Facebook Media using snapsave.app downloader",
   "type": "module",
   "scripts": {
     "lint": "eslint . --fix",
@@ -51,6 +51,7 @@
     "typescript-eslint": "^7.7.0"
   },
   "devDependencies": {
+    "@types/node": "^20.12.7",
     "shx": "^0.3.4",
     "typescript": "^5.4.5"
   }
