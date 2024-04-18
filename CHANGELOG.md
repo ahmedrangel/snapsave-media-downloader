@@ -1,3 +1,17 @@
+## v1.0.3
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.2...v1.0.3)
+
+### 🏡 Chore
+
+- Add readme ([d82dac8](https://github.com/ahmedrangel/snapsave-media-downloader/commit/d82dac8))
+- Edit readme ([3b96b89](https://github.com/ahmedrangel/snapsave-media-downloader/commit/3b96b89))
+- Add @types/node + edit description ([3cb620f](https://github.com/ahmedrangel/snapsave-media-downloader/commit/3cb620f))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v1.0.2
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.1...v1.0.2)
