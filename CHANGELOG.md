@@ -1,3 +1,15 @@
+## v1.0.4
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.3...v1.0.4)
+
+### 🏡 Chore
+
+- Adjust regex ([150b1c1](https://github.com/ahmedrangel/snapsave-media-downloader/commit/150b1c1))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v1.0.3
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.2...v1.0.3)

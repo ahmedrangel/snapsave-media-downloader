@@ -1,6 +1,6 @@
 {
   "name": "snapsave-media-downloader",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Download Instagram and Facebook Media using snapsave.app downloader",
   "type": "module",
   "scripts": {
