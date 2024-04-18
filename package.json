@@ -1,6 +1,6 @@
 {
   "name": "snapsave-media-downloader",
-  "version": "1.0.1",
+  "version": "0.0.2",
   "description": "Download Instagram and Facebook media from snapsave.app",
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "shx rm -rf ./dist/* && tsc",
     "playground": "node playground/index.js",
     "publish": "publish --access public",
-    "release": "changelogen --release"
+    "release": "changelogen --release --push"
   },
   "keywords": [
     "instagram",
