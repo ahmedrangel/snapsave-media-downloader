@@ -1,6 +1,6 @@
 # Snapsave Media Downloader
 
-Download Instagram and Facebook Media using snapsave.app
+Download Instagram and Facebook Media using snapsave.app downloader
 
 Example:
 ```js
