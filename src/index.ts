@@ -3,7 +3,10 @@ import cheerio from "cheerio";
 
 export const snapsave = async (url: string) => {
   try {
-    if (!url.match(/(?:https?:\/\/(web\.|www\.|m\.)?(facebook|fb)\.(com|watch)\S+)?$/) && !url.match(/(https|http):\/\/www.instagram.com\/(p|reel|tv|stories)/gi)) return { status: false, msg: "Link Url not valid" };
+    const fb_regex = /(https|http):\/\/(?:(?:www\.facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:www\.facebook\.com\/reel\/\d+)|(?:www\.facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
+    const ig_regex = /((?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|reel|reels|tv|stories)\/([^/?#&]+)).*/g;
+
+    if (!url.match(fb_regex) && !url.match(ig_regex)) return { status: false, msg: "Link Url not valid" };
     function decodeSnapApp(args: string[]) {
       // eslint-disable-next-line prefer-const, @typescript-eslint/no-unused-vars
       let [h, u, n, t, e, r] = args;
@@ -67,6 +70,7 @@ export const snapsave = async (url: string) => {
       },
       body: formData
     }).catch((e) => e);
+
     const decode = decryptSnapSave(html);
     const $ = cheerio.load(decode);
     const results = [];
