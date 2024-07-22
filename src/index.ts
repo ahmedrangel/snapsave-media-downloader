@@ -3,18 +3,16 @@ import cheerio from "cheerio";
 
 export const snapsave = async (url: string) => {
   try {
-    const fb_regex = /(https|http):\/\/(?:(?:www\.facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:www\.facebook\.com\/reel\/\d+)|(?:www\.facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
-    const ig_regex = /((?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|reel|reels|tv|stories)\/([^/?#&]+)).*/g;
+    const fbRegex = /(https|http):\/\/(?:(?:www\.facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:www\.facebook\.com\/reel\/\d+)|(?:www\.facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
+    const igRegex = /((?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|reel|reels|tv|stories)\/([^/?#&]+)).*/g;
 
-    if (!url.match(fb_regex) && !url.match(ig_regex)) return { status: false, msg: "Link Url not valid" };
-    function decodeSnapApp(args: string[]) {
-      // eslint-disable-next-line prefer-const, @typescript-eslint/no-unused-vars
+    if (!url.match(fbRegex) && !url.match(igRegex)) return { status: false, msg: "Link Url not valid" };
+    function decodeSnapApp (args: string[]) {
       let [h, u, n, t, e, r] = args;
       function decode (d: number, e: number, f: number) {
         const g = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/".split("");
         const h = g.slice(0, e);
         const i = g.slice(0, f);
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-expect-error
         let j = d.split("").reverse().reduce(function (a: string, b: string, c: number) {
           if (h.indexOf(b) !== -1)
@@ -35,13 +33,12 @@ export const snapsave = async (url: string) => {
         }
         for (let j = 0; j < n.length; j++)
           s = s.replace(new RegExp(n[j], "g"), j.toString());
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-expect-error
         r += String.fromCharCode(decode(s, e, 10) - t);
       }
       return decodeURIComponent(encodeURIComponent(r));
     }
-    function getEncodedSnapApp(data: string) {
+    function getEncodedSnapApp (data: string) {
       return data.split("decodeURIComponent(escape(r))}(")[1]
         .split("))")[0]
         .split(",")
@@ -52,7 +49,7 @@ export const snapsave = async (url: string) => {
         .split("\"; document.getElementById(\"inputData\").remove(); ")[0]
         .replace(/\\(\\)?/g, "");
     }
-    function decryptSnapSave(data: string) {
+    function decryptSnapSave (data: string) {
       return getDecodedSnapSave(decodeSnapApp(getEncodedSnapApp(data)));
     }
 
