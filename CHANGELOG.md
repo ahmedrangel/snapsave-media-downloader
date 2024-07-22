@@ -1,3 +1,17 @@
+## v1.0.5
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.4...v1.0.5)
+
+### 🏡 Chore
+
+- Update playground example ([dc9ba06](https://github.com/ahmedrangel/snapsave-media-downloader/commit/dc9ba06))
+- Update deps, update eslint config and use stylistic ([29bb15b](https://github.com/ahmedrangel/snapsave-media-downloader/commit/29bb15b))
+- Lint ([2ea4ec5](https://github.com/ahmedrangel/snapsave-media-downloader/commit/2ea4ec5))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v1.0.4
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.3...v1.0.4)
