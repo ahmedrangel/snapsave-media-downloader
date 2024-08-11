@@ -1,3 +1,16 @@
+## v1.0.6
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.5...v1.0.6)
+
+### 🏡 Chore
+
+- Update deps ([efd2e50](https://github.com/ahmedrangel/snapsave-media-downloader/commit/efd2e50))
+- Import cheerio load function only ([533b197](https://github.com/ahmedrangel/snapsave-media-downloader/commit/533b197))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v1.0.5
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.4...v1.0.5)
