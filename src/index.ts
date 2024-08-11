@@ -1,5 +1,5 @@
 import { ofetch } from "ofetch";
-import cheerio from "cheerio";
+import { load } from "cheerio";
 
 export const snapsave = async (url: string) => {
   try {
@@ -69,7 +69,7 @@ export const snapsave = async (url: string) => {
     }).catch((e) => e);
 
     const decode = decryptSnapSave(html);
-    const $ = cheerio.load(decode);
+    const $ = load(decode);
     const results = [];
     if ($("table.table").length || $("article.media > figure").length) {
       const thumbnail = $("article.media > figure").find("img").attr("src");
