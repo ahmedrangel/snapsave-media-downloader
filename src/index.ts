@@ -1,4 +1,3 @@
-import { ofetch } from "ofetch";
 import { load } from "cheerio";
 
 export const snapsave = async (url: string) => {
@@ -56,7 +55,7 @@ export const snapsave = async (url: string) => {
     const formData = new URLSearchParams();
     formData.append("url", url);
 
-    const html = await ofetch("https://snapsave.app/action.php?lang=id", {
+    const response = await fetch("https://snapsave.app/action.php?lang=id", {
       method: "POST",
       headers: {
         "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
@@ -66,8 +65,9 @@ export const snapsave = async (url: string) => {
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
       },
       body: formData
-    }).catch((e) => e);
+    });
 
+    const html = await response.text();
     const decode = decryptSnapSave(html);
     const $ = load(decode);
     const results = [];
