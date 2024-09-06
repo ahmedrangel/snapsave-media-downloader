@@ -11,7 +11,9 @@
     "emitDeclarationOnly": false,
     "declarationMap": true,
     "resolveJsonModule": true,
-    "removeComments": true
+    "removeComments": true,
+    "esModuleInterop": true,
+    "lib": ["ESNext"]
   },
   "exclude": ["node_modules", "**/*.test.ts", "dist"],
   "include": ["src/**/*"]
