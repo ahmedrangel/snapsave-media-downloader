@@ -1,3 +1,17 @@
+## v1.0.7
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.6...v1.0.7)
+
+### 🏡 Chore
+
+- **build:** Edit build settings ([de7ffb0](https://github.com/ahmedrangel/snapsave-media-downloader/commit/de7ffb0))
+- Use node fetch ([98999c9](https://github.com/ahmedrangel/snapsave-media-downloader/commit/98999c9))
+- Update deps ([81ba991](https://github.com/ahmedrangel/snapsave-media-downloader/commit/81ba991))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v1.0.6
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.5...v1.0.6)
