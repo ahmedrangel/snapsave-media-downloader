@@ -2,6 +2,15 @@
 
 Download Instagram and Facebook Media using snapsave.app downloader
 
+## Install dependency
+```bash
+# Using npm
+npm install snapsave-media-downloader
+
+# Using pnpm
+pnpm add snapsave-media-downloader
+```
+
 Example:
 ```js
 import { snapsave } from "snapsave-media-downloader";
