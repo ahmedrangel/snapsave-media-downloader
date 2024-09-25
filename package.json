@@ -48,10 +48,12 @@
     "@types/node": "^22.5.4",
     "@typescript-eslint/parser": "^8.4.0",
     "changelogen": "^0.5.5",
-    "cheerio": "1.0.0",
     "eslint": "^9.9.1",
     "shx": "^0.3.4",
     "tsup": "^8.2.4",
     "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0"
   }
 }
