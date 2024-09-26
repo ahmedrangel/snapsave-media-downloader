@@ -7,7 +7,6 @@
     "lint": "eslint . --fix",
     "build": "shx rm -rf ./dist/* && tsup-node src/index.ts --format esm --dts --config tsconfig.json",
     "playground": "node playground/index.js",
-    "publish": "publish",
     "release": "changelogen --release"
   },
   "keywords": [
