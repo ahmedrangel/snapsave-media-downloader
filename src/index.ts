@@ -2,10 +2,12 @@ import { load } from "cheerio";
 
 export const snapsave = async (url: string) => {
   try {
-    const fbRegex = /(https|http):\/\/(?:(?:www\.facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:www\.facebook\.com\/reel\/\d+)|(?:www\.facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
-    const igRegex = /((?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|reel|reels|tv|stories)\/([^/?#&]+)).*/g;
+    const facebookRegex = /(https|http):\/\/(?:(?:www\.facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:www\.facebook\.com\/reel\/\d+)|(?:www\.facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
+    const instagramRegex = /((?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|reel|reels|tv|stories)\/([^/?#&]+)).*/g;
+    const tiktokRegex = /((?:https?:\/\/)?(?:www\.|m\.|vm\.)?tiktok\.com\/(?:@[^/]+\/video\/\d+|v\/\d+|t\/[\w]+|[\w]+)\/?)/g;
+    const regexList = [facebookRegex, instagramRegex, tiktokRegex];
 
-    if (!url.match(fbRegex) && !url.match(igRegex)) return { status: false, msg: "Link Url not valid" };
+    if (!regexList.some(regex => url.match(regex))) return { status: false, msg: "Link Url not valid" };
     function decodeSnapApp (args: string[]) {
       let [h, u, n, t, e, r] = args;
       function decode (d: number, e: number, f: number) {
@@ -35,7 +37,13 @@ export const snapsave = async (url: string) => {
           // @ts-expect-error
         r += String.fromCharCode(decode(s, e, 10) - t);
       }
-      return decodeURIComponent(encodeURIComponent(r));
+
+      const fixEncoding = (str: string) => {
+        const bytes = new Uint8Array(str.split("").map(char => char.charCodeAt(0)));
+        return new TextDecoder("utf-8").decode(bytes);
+      };
+
+      return fixEncoding(r);
     }
     function getEncodedSnapApp (data: string) {
       return data.split("decodeURIComponent(escape(r))}(")[1]
@@ -53,7 +61,7 @@ export const snapsave = async (url: string) => {
     }
 
     const formData = new URLSearchParams();
-    formData.append("url", url);
+    formData.append("url", /^(https?:\/\/)(?!www\.)([a-z0-9]+)\.[a-z0-9]+\.[a-z]{2,}/i.test(url) ? url : url.replace(/^(https?:\/\/)/, "$&www."));
 
     const response = await fetch("https://snapsave.app/action.php?lang=id", {
       method: "POST",
@@ -73,22 +81,34 @@ export const snapsave = async (url: string) => {
     const results = [];
     if ($("table.table").length || $("article.media > figure").length) {
       const thumbnail = $("article.media > figure").find("img").attr("src");
-      $("tbody > tr").each((_, el) => {
-        const $el = $(el);
-        const $td = $el.find("td");
-        const resolution = $td.eq(0).text();
-        let _url = $td.eq(2).find("a").attr("href") || $td.eq(2).find("button").attr("onclick");
-        const shouldRender = /get_progressApi/ig.test(_url || "");
-        if (shouldRender) {
-          _url = /get_progressApi\('(.*?)'\)/.exec(_url || "")?.[1] || _url;
-        }
+      const description = $("span.video-des").text().trim();
+      if ($("table.table").length) {
+        $("tbody > tr").each((_, el) => {
+          const $el = $(el);
+          const $td = $el.find("td");
+          const resolution = $td.eq(0).text();
+          let _url = $td.eq(2).find("a").attr("href") || $td.eq(2).find("button").attr("onclick");
+          const shouldRender = /get_progressApi/ig.test(_url || "");
+          if (shouldRender) {
+            _url = /get_progressApi\('(.*?)'\)/.exec(_url || "")?.[1] || _url;
+          }
+          results.push({
+            resolution,
+            thumbnail,
+            url: _url,
+            description,
+            shouldRender
+          });
+        });
+      }
+      else {
+        let _url = $("a").attr("href") || $("button").attr("onclick");
         results.push({
-          resolution,
           thumbnail,
           url: _url,
-          shouldRender
+          description
         });
-      });
+      }
     }
     else {
       $("div.download-items__thumb").each((_, tod) => {
