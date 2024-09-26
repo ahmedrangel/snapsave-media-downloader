@@ -1,3 +1,26 @@
+## v1.1.0
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.7...v1.1.0)
+
+### 🚀 Enhancements
+
+- Add support for tiktok snapsave video downloader ([40d9ea5](https://github.com/ahmedrangel/snapsave-media-downloader/commit/40d9ea5))
+
+### 📖 Documentation
+
+- Add install dependency step ([b968d2b](https://github.com/ahmedrangel/snapsave-media-downloader/commit/b968d2b))
+
+### 🏡 Chore
+
+- **release:** V1.0.7 ([330a1cc](https://github.com/ahmedrangel/snapsave-media-downloader/commit/330a1cc))
+- **package:** Move cheerio from devDependencies to dependencies ([10248fd](https://github.com/ahmedrangel/snapsave-media-downloader/commit/10248fd))
+- Update deps ([8a396dd](https://github.com/ahmedrangel/snapsave-media-downloader/commit/8a396dd))
+- Edit package description ([8eb9ab2](https://github.com/ahmedrangel/snapsave-media-downloader/commit/8eb9ab2))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v1.0.7
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.6...v1.0.7)
