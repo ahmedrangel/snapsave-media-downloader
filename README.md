@@ -1,6 +1,6 @@
 # Snapsave Media Downloader
 
-Download Instagram and Facebook Media using snapsave.app downloader
+Download Instagram, Facebook and TikTok media using snapsave.app downloader
 
 ## Install dependency
 ```bash
