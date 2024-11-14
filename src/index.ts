@@ -94,7 +94,7 @@ export const snapsave = async (url: string) => {
           let _url = $td.eq(2).find("a").attr("href") || $td.eq(2).find("button").attr("onclick");
           const shouldRender = /get_progressApi/ig.test(_url || "");
           if (shouldRender) {
-            _url = /get_progressApi\('(.*?)'\)/.exec(_url || "")?.[1] || _url;
+            _url = "https://snapsave.app" + /get_progressApi\('(.*?)'\)/.exec(_url || "")?.[1] || _url;
           }
           media.push({
             resolution,
