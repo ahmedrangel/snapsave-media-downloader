@@ -1,3 +1,37 @@
+## v2.0.0
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.1.0...v2.0.0)
+
+### 🩹 Fixes
+
+- Url fixer ([e9375e1](https://github.com/ahmedrangel/snapsave-media-downloader/commit/e9375e1))
+
+### 📖 Documentation
+
+- Update and improve readme ([4c5ce28](https://github.com/ahmedrangel/snapsave-media-downloader/commit/4c5ce28))
+
+### 🏡 Chore
+
+- **release:** V1.1.0 ([a6c9a58](https://github.com/ahmedrangel/snapsave-media-downloader/commit/a6c9a58))
+- **package:** Remove publish script ([1270b1b](https://github.com/ahmedrangel/snapsave-media-downloader/commit/1270b1b))
+- Update invalid url message ([d54cb28](https://github.com/ahmedrangel/snapsave-media-downloader/commit/d54cb28))
+- ⚠️  Rename msg prop to message ([3859637](https://github.com/ahmedrangel/snapsave-media-downloader/commit/3859637))
+- Adjust request data ([25e888b](https://github.com/ahmedrangel/snapsave-media-downloader/commit/25e888b))
+- ⚠️  Rework response properties ([26432b0](https://github.com/ahmedrangel/snapsave-media-downloader/commit/26432b0))
+- Add types ([61c9eb8](https://github.com/ahmedrangel/snapsave-media-downloader/commit/61c9eb8))
+- Update deps ([cba9c04](https://github.com/ahmedrangel/snapsave-media-downloader/commit/cba9c04))
+- Concatenate snapsave URL when shouldRender is true ([8d7b45f](https://github.com/ahmedrangel/snapsave-media-downloader/commit/8d7b45f))
+- Lint ([0491fee](https://github.com/ahmedrangel/snapsave-media-downloader/commit/0491fee))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Rename msg prop to message ([3859637](https://github.com/ahmedrangel/snapsave-media-downloader/commit/3859637))
+- ⚠️  Rework response properties ([26432b0](https://github.com/ahmedrangel/snapsave-media-downloader/commit/26432b0))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v1.1.0
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.0.7...v1.1.0)
