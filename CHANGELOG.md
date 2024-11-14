@@ -1,3 +1,26 @@
+## v2.0.2
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.0.1...v2.0.2)
+
+### 🏡 Chore
+
+- Improve regex and separate utils ([01b5179](https://github.com/ahmedrangel/snapsave-media-downloader/commit/01b5179))
+- **package:** Add packageManager ([b7aa298](https://github.com/ahmedrangel/snapsave-media-downloader/commit/b7aa298))
+- Lint ([93bd3ef](https://github.com/ahmedrangel/snapsave-media-downloader/commit/93bd3ef))
+- **types:** Separate types ([63836b6](https://github.com/ahmedrangel/snapsave-media-downloader/commit/63836b6))
+
+### ✅ Tests
+
+- Add tests ([b0d5871](https://github.com/ahmedrangel/snapsave-media-downloader/commit/b0d5871))
+
+### 🤖 CI
+
+- Add autofix and ci test ([27cf431](https://github.com/ahmedrangel/snapsave-media-downloader/commit/27cf431))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v2.0.1
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.0.0...v2.0.1)
