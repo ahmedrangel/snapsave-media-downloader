@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { facebookRegex, instagramRegex, normalizeURL, tiktokRegex } from "../src/utils";
 
 describe("Facebook regex", () => {
@@ -42,7 +42,7 @@ describe("Instagram regex", () => {
     "https://www.instagram.com/stories/user_name",
     "https://www.instagram.com/stories/user_name/",
     "https://www.instagram.com/stories/user_name/1234567890123456",
-    "https://www.instagram.com/stories/user_name/1234567890123456/",
+    "https://www.instagram.com/stories/user_name/1234567890123456/"
 
   ];
 
@@ -51,7 +51,7 @@ describe("Instagram regex", () => {
       expect(url.match(instagramRegex)).toBeTruthy();
     });
   });
-})
+});
 
 describe("TikTok regex", () => {
   const urls = [
@@ -63,7 +63,7 @@ describe("TikTok regex", () => {
     "https://vm.tiktok.com/ZAbc8d911",
     "https://vm.tiktok.com/ZAbc8d911/",
     "https://m.tiktok.com/v/1234567890123456789",
-    "https://m.tiktok.com/v/1234567890123456789/",
+    "https://m.tiktok.com/v/1234567890123456789/"
   ];
 
   urls.forEach((url, index) => {
@@ -71,16 +71,16 @@ describe("TikTok regex", () => {
       expect(url.match(tiktokRegex)).toBeTruthy();
     });
   });
-})
+});
 
 describe("Normalize URL", () => {
-  it(`should normalize: type 1`, () => {
+  it("should normalize: type 1", () => {
     expect(normalizeURL("https://tiktok.com")).toStrictEqual("https://www.tiktok.com");
   });
-  it(`should normalize: type 2`, () => {
+  it("should normalize: type 2", () => {
     expect(normalizeURL("https://www.tiktok.com")).toStrictEqual("https://www.tiktok.com");
   });
-  it(`should normalize: type 3`, () => {
+  it("should normalize: type 3", () => {
     expect(normalizeURL("https://vm.tiktok.com")).toStrictEqual("https://vm.tiktok.com");
   });
-})
+});

@@ -44,7 +44,8 @@ export default [
       "@stylistic/require-default-prop": "off",
       "@stylistic/space-in-parens": ["error", "never"],
       "@stylistic/template-curly-spacing": "error",
-      "@stylistic/quote-props": ["error", "consistent-as-needed"]
+      "@stylistic/quote-props": ["error", "consistent-as-needed"],
+      "sort-imports": ["error", { ignoreDeclarationSort: true }]
     }
   }
 ];

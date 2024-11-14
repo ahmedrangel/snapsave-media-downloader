@@ -3,5 +3,5 @@ export const instagramRegex = /^https?:\/\/(?:www\.)?instagram\.com\/(?:p|reel|r
 export const tiktokRegex = /^https?:\/\/(?:www\.|m\.|vm\.)?tiktok\.com\/(?:@[^/]+\/video\/\d+|v\/\d+|t\/[\w]+|[\w]+)\/?/g;
 
 export const normalizeURL = (url: string) => {
-  return /^(https?:\/\/)(?!www\.)[a-z0-9]+/i.test(url) ? url.replace(/^(https?:\/\/)([^./]+\.[^./]+)(\/.*)?$/, "$1www.$2$3") : url
+  return /^(https?:\/\/)(?!www\.)[a-z0-9]+/i.test(url) ? url.replace(/^(https?:\/\/)([^./]+\.[^./]+)(\/.*)?$/, "$1www.$2$3") : url;
 };
