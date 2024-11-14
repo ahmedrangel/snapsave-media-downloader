@@ -63,14 +63,14 @@ export const snapsave = async (url: string) => {
     const formData = new URLSearchParams();
     formData.append("url", /^(https?:\/\/)(?!www\.)[a-z0-9]+/i.test(url) ? url.replace(/^(https?:\/\/)([^./]+\.[^./]+)(\/.*)?$/, "$1www.$2$3") : url);
 
-    const response = await fetch("https://snapsave.app/action.php?lang=id", {
+    const response = await fetch("https://snapsave.app/action.php?lang=en", {
       method: "POST",
       headers: {
-        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+        "accept": "*/*",
         "content-type": "application/x-www-form-urlencoded",
         "origin": "https://snapsave.app",
-        "referer": "https://snapsave.app/id",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"
+        "referer": "https://snapsave.app/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0"
       },
       body: formData
     });
