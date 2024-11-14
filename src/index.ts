@@ -7,7 +7,7 @@ export const snapsave = async (url: string) => {
     const tiktokRegex = /((?:https?:\/\/)?(?:www\.|m\.|vm\.)?tiktok\.com\/(?:@[^/]+\/video\/\d+|v\/\d+|t\/[\w]+|[\w]+)\/?)/g;
     const regexList = [facebookRegex, instagramRegex, tiktokRegex];
 
-    if (!regexList.some(regex => url.match(regex))) return { status: false, message: "Invalid URL" };
+    if (!regexList.some(regex => url.match(regex))) return { success: false, message: "Invalid URL" };
     function decodeSnapApp (args: string[]) {
       let [h, u, n, t, e, r] = args;
       function decode (d: number, e: number, f: number) {
@@ -78,10 +78,14 @@ export const snapsave = async (url: string) => {
     const html = await response.text();
     const decode = decryptSnapSave(html);
     const $ = load(decode);
-    const results = [];
+    const media = [];
+    const data = {};
+
     if ($("table.table").length || $("article.media > figure").length) {
       const thumbnail = $("article.media > figure").find("img").attr("src");
       const description = $("span.video-des").text().trim();
+      data.thumbnail = thumbnail;
+      data.description = description;
       if ($("table.table").length) {
         $("tbody > tr").each((_, el) => {
           const $el = $(el);
@@ -92,41 +96,37 @@ export const snapsave = async (url: string) => {
           if (shouldRender) {
             _url = /get_progressApi\('(.*?)'\)/.exec(_url || "")?.[1] || _url;
           }
-          results.push({
+          media.push({
             resolution,
-            thumbnail,
+            shouldRender,
             url: _url,
-            description,
-            shouldRender
           });
         });
       }
       else {
         let _url = $("a").attr("href") || $("button").attr("onclick");
-        results.push({
-          thumbnail,
+        media.push({
           url: _url,
-          description
         });
       }
     }
     else {
       $("div.download-items__thumb").each((_, tod) => {
         const thumbnail = $(tod).find("img").attr("src");
+        data.thumbnail = thumbnail;
         $("div.download-items__btn").each((_, ol) => {
           let _url = $(ol).find("a").attr("href");
           if (!/https?:\/\//.test(_url || "")) _url = `https://snapsave.app${_url}`;
-          results.push({
-            thumbnail,
+          media.push({
             url: _url
           });
         });
       });
     }
-    if (!results.length) return { status: false, message: "Blank data" };
-    return { status: true, data: results };
+    if (!media.length) return { status: false, message: "Blank data" };
+    return { success: true, data: { ...data, media } };
   }
   catch (e) {
-    return { status: false, message: e.message };
+    return { success: false, message: "Something went wrong" };
   }
 };
