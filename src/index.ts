@@ -78,8 +78,8 @@ export const snapsave = async (url: string) => {
     const html = await response.text();
     const decode = decryptSnapSave(html);
     const $ = load(decode);
-    const media = [];
-    const data = {};
+    const media = [] as SnapSaveDownloaderMedia[];
+    const data = {} as SnapSaveDownloaderResponse["data"];
 
     if ($("table.table").length || $("article.media > figure").length) {
       const thumbnail = $("article.media > figure").find("img").attr("src");
@@ -130,3 +130,19 @@ export const snapsave = async (url: string) => {
     return { success: false, message: "Something went wrong" };
   }
 };
+
+interface SnapSaveDownloaderMedia {
+  resolution?: string;
+  shouldRender?: boolean;
+  url: string;
+}
+
+interface SnapSaveDownloaderResponse {
+  success: boolean;
+  message?: string;
+  data?: {
+    description?: string;
+    thumbnail?: string;
+    media: SnapSaveDownloaderMedia[];
+  };
+}
