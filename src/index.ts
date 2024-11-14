@@ -1,12 +1,9 @@
 import { load } from "cheerio";
+import { facebookRegex, instagramRegex, normalizeURL, tiktokRegex } from "./utils";
 
 export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse> => {
   try {
-    const facebookRegex = /(https|http):\/\/(?:(?:(?:www\.)?facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:(?:www\.)?facebook\.com\/reel\/\d+)|(?:(?:www\.)?facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
-    const instagramRegex = /((?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|reel|reels|tv|stories)\/([^/?#&]+)).*/g;
-    const tiktokRegex = /((?:https?:\/\/)?(?:www\.|m\.|vm\.)?tiktok\.com\/(?:@[^/]+\/video\/\d+|v\/\d+|t\/[\w]+|[\w]+)\/?)/g;
     const regexList = [facebookRegex, instagramRegex, tiktokRegex];
-
     if (!regexList.some(regex => url.match(regex))) return { success: false, message: "Invalid URL" };
     function decodeSnapApp (args: string[]) {
       let [h, u, n, t, e, r] = args;
@@ -61,7 +58,7 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
     }
 
     const formData = new URLSearchParams();
-    formData.append("url", /^(https?:\/\/)(?!www\.)[a-z0-9]+/i.test(url) ? url.replace(/^(https?:\/\/)([^./]+\.[^./]+)(\/.*)?$/, "$1www.$2$3") : url);
+    formData.append("url", normalizeURL(url));
 
     const response = await fetch("https://snapsave.app/action.php?lang=en", {
       method: "POST",
@@ -137,7 +134,7 @@ interface SnapSaveDownloaderMedia {
   url: string;
 }
 
-interface SnapSaveDownloaderResponse {
+export interface SnapSaveDownloaderResponse {
   success: boolean;
   message?: string;
   data?: {
