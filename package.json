@@ -58,5 +58,6 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0"
-  }
+  },
+  "packageManager": "pnpm@9.13.0"
 }
