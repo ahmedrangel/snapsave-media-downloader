@@ -99,14 +99,14 @@ export const snapsave = async (url: string) => {
           media.push({
             resolution,
             shouldRender,
-            url: _url,
+            url: _url
           });
         });
       }
       else {
         let _url = $("a").attr("href") || $("button").attr("onclick");
         media.push({
-          url: _url,
+          url: _url
         });
       }
     }
