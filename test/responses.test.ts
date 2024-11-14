@@ -1,5 +1,6 @@
 import { type Mock, describe, expect, it, vi } from "vitest";
-import { type SnapSaveDownloaderResponse, snapsave } from "../src";
+import { snapsave } from "../src";
+import type { SnapSaveDownloaderResponse } from "../src/types";
 
 vi.mock("../src", () => ({ snapsave: vi.fn() }));
 describe("SnapSave successful responses", () => {

@@ -1,5 +1,6 @@
 import { load } from "cheerio";
 import { facebookRegex, instagramRegex, normalizeURL, tiktokRegex } from "./utils";
+import type { SnapSaveDownloaderMedia, SnapSaveDownloaderResponse } from "./types";
 
 export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse> => {
   try {
@@ -127,19 +128,3 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
     return { success: false, message: "Something went wrong" };
   }
 };
-
-interface SnapSaveDownloaderMedia {
-  resolution?: string;
-  shouldRender?: boolean;
-  url: string;
-}
-
-export interface SnapSaveDownloaderResponse {
-  success: boolean;
-  message?: string;
-  data?: {
-    description?: string;
-    thumbnail?: string;
-    media: SnapSaveDownloaderMedia[];
-  };
-}
