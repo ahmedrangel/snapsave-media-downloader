@@ -1,6 +1,6 @@
 import { load } from "cheerio";
 
-export const snapsave = async (url: string) => {
+export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse> => {
   try {
     const facebookRegex = /(https|http):\/\/(?:(?:(?:www\.)?facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:(?:www\.)?facebook\.com\/reel\/\d+)|(?:(?:www\.)?facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
     const instagramRegex = /((?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|reel|reels|tv|stories)\/([^/?#&]+)).*/g;
