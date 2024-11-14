@@ -2,7 +2,7 @@ import { load } from "cheerio";
 
 export const snapsave = async (url: string) => {
   try {
-    const facebookRegex = /(https|http):\/\/(?:(?:www\.facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:www\.facebook\.com\/reel\/\d+)|(?:www\.facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
+    const facebookRegex = /(https|http):\/\/(?:(?:(?:www\.)?facebook\.com\/(?:(?:(?:video\.php)||(?:watch\/))\?v=\d+|(?:[0-9a-zA-Z-_.]+\/(?:(?:video|(post))(?:s))\/)(?:[0-9a-zA-Z-_.]+(?:\/\d+)*)))|(?:fb\.watch\/(?:\w|-)+)|(?:(?:www\.)?facebook\.com\/reel\/\d+)|(?:(?:www\.)?facebook\.com\/share\/(v|r)\/[a-zA-Z0-9]+\/)\/?)/;
     const instagramRegex = /((?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:p|reel|reels|tv|stories)\/([^/?#&]+)).*/g;
     const tiktokRegex = /((?:https?:\/\/)?(?:www\.|m\.|vm\.)?tiktok\.com\/(?:@[^/]+\/video\/\d+|v\/\d+|t\/[\w]+|[\w]+)\/?)/g;
     const regexList = [facebookRegex, instagramRegex, tiktokRegex];
@@ -61,7 +61,7 @@ export const snapsave = async (url: string) => {
     }
 
     const formData = new URLSearchParams();
-    formData.append("url", /^(https?:\/\/)(?!www\.)([a-z0-9]+)\.[a-z0-9]+\.[a-z]{2,}/i.test(url) ? url : url.replace(/^(https?:\/\/)/, "$&www."));
+    formData.append("url", /^(https?:\/\/)(?!www\.)[a-z0-9]+/i.test(url) ? url.replace(/^(https?:\/\/)([^./]+\.[^./]+)(\/.*)?$/, "$1www.$2$3") : url);
 
     const response = await fetch("https://snapsave.app/action.php?lang=id", {
       method: "POST",
