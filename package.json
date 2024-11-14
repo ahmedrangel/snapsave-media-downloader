@@ -4,10 +4,12 @@
   "description": "Download Instagram, Facebook and TikTok media using snapsave.app downloader",
   "type": "module",
   "scripts": {
-    "lint": "eslint . --fix",
+    "lint": "eslint .",
     "build": "shx rm -rf ./dist/* && tsup-node src/index.ts --format esm --dts --config tsconfig.json",
     "playground": "node playground/index.js",
-    "release": "changelogen --release"
+    "release": "changelogen --release",
+    "test": "vitest run --reporter=verbose",
+    "test:types": "tsc --noEmit"
   },
   "keywords": [
     "instagram",
@@ -51,7 +53,8 @@
     "eslint": "^9.14.0",
     "shx": "^0.3.4",
     "tsup": "^8.3.5",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
   },
   "dependencies": {
     "cheerio": "^1.0.0"
