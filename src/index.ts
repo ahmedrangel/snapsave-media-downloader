@@ -7,7 +7,7 @@ export const snapsave = async (url: string) => {
     const tiktokRegex = /((?:https?:\/\/)?(?:www\.|m\.|vm\.)?tiktok\.com\/(?:@[^/]+\/video\/\d+|v\/\d+|t\/[\w]+|[\w]+)\/?)/g;
     const regexList = [facebookRegex, instagramRegex, tiktokRegex];
 
-    if (!regexList.some(regex => url.match(regex))) return { status: false, msg: "Link Url not valid" };
+    if (!regexList.some(regex => url.match(regex))) return { status: false, msg: "Invalid URL" };
     function decodeSnapApp (args: string[]) {
       let [h, u, n, t, e, r] = args;
       function decode (d: number, e: number, f: number) {
