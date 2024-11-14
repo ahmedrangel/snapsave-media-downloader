@@ -1,3 +1,19 @@
+## v2.0.1
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.0.0...v2.0.1)
+
+### 🩹 Fixes
+
+- Missing property rename ([bb0a595](https://github.com/ahmedrangel/snapsave-media-downloader/commit/bb0a595))
+
+### 🏡 Chore
+
+- Add promise type to snapsave function ([9dd4ce1](https://github.com/ahmedrangel/snapsave-media-downloader/commit/9dd4ce1))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v2.0.0
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v1.1.0...v2.0.0)
