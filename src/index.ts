@@ -123,7 +123,7 @@ export const snapsave = async (url: string) => {
         });
       });
     }
-    if (!media.length) return { status: false, message: "Blank data" };
+    if (!media.length) return { success: false, message: "Blank data" };
     return { success: true, data: { ...data, media } };
   }
   catch (e) {
