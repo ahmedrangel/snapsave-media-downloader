@@ -1,20 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES6",                       /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */
-    "module": "ESNext",                       /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
-    "outDir": "./dist",                      /* Redirect output structure to the directory. */
-    "rootDir": "./src",                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
-    "moduleResolution": "node",               /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-    "allowSyntheticDefaultImports": true,     /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
-    "allowJs": true,
-    "declaration": true,
-    "emitDeclarationOnly": false,
-    "declarationMap": true,
+    "target": "ESNext",
+    "module": "Preserve",
     "resolveJsonModule": true,
-    "removeComments": true,
-    "esModuleInterop": true,
-    "lib": ["ESNext"]
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "checkJs": true,
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitOverride": true,
+    "noEmit": true
   },
-  "exclude": ["node_modules", "**/*.test.ts", "dist"],
-  "include": ["src/**/*"]
+  "include": ["src", "test"]
 }

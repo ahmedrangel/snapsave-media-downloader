@@ -4,10 +4,11 @@
   "description": "Download Instagram, Facebook and TikTok media using snapsave.app downloader",
   "type": "module",
   "scripts": {
+    "build": "unbuild",
+    "prepack": "pnpm build",
     "lint": "eslint .",
-    "build": "shx rm -rf ./dist/* && tsup-node src/index.ts --format esm --dts --config tsconfig.json",
     "playground": "node playground/index.js",
-    "release": "changelogen --release",
+    "release": "npm run lint && npm run test && npm run build && changelogen --release && npm publish && git push --follow-tags",
     "test": "vitest run --reporter=verbose",
     "test:types": "tsc --noEmit"
   },
@@ -25,11 +26,17 @@
   ],
   "author": "ahmedrangel",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "exports": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ahmedrangel/snapsave-media-downloader.git"
@@ -51,9 +58,8 @@
     "@typescript-eslint/parser": "^8.14.0",
     "changelogen": "^0.5.7",
     "eslint": "^9.14.0",
-    "shx": "^0.3.4",
-    "tsup": "^8.3.5",
     "typescript": "^5.6.3",
+    "unbuild": "^2.0.0",
     "vitest": "^2.1.5"
   },
   "dependencies": {

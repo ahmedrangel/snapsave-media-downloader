@@ -1,6 +1,6 @@
 import { load } from "cheerio";
 import { facebookRegex, instagramRegex, normalizeURL, tiktokRegex } from "./utils";
-import type { SnapSaveDownloaderMedia, SnapSaveDownloaderResponse } from "./types";
+import type { SnapSaveDownloaderData, SnapSaveDownloaderResponse } from "./types";
 
 export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse> => {
   try {
@@ -27,7 +27,7 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
       r = "";
       for (let i = 0, len = h.length; i < len; i++) {
         let s = "";
-        while (h[i] !== n[e]) {
+        while (h[i] !== n[Number(e)]) {
           s += h[i]; i++;
         }
         for (let j = 0; j < n.length; j++)
@@ -76,8 +76,9 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
     const html = await response.text();
     const decode = decryptSnapSave(html);
     const $ = load(decode);
-    const media = [] as SnapSaveDownloaderMedia[];
-    const data = {} as SnapSaveDownloaderResponse["data"];
+    const data: SnapSaveDownloaderData = {
+      media: []
+    };
 
     if ($("table.table").length || $("article.media > figure").length) {
       const thumbnail = $("article.media > figure").find("img").attr("src");
@@ -94,7 +95,7 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
           if (shouldRender) {
             _url = "https://snapsave.app" + /get_progressApi\('(.*?)'\)/.exec(_url || "")?.[1] || _url;
           }
-          media.push({
+          data.media.push({
             resolution,
             shouldRender,
             url: _url
@@ -103,7 +104,7 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
       }
       else {
         let _url = $("a").attr("href") || $("button").attr("onclick");
-        media.push({
+        data.media.push({
           url: _url
         });
       }
@@ -115,14 +116,14 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
         $("div.download-items__btn").each((_, ol) => {
           let _url = $(ol).find("a").attr("href");
           if (!/https?:\/\//.test(_url || "")) _url = `https://snapsave.app${_url}`;
-          media.push({
+          data.media.push({
             url: _url
           });
         });
       });
     }
-    if (!media.length) return { success: false, message: "Blank data" };
-    return { success: true, data: { ...data, media } };
+    if (!data.media.length) return { success: false, message: "Blank data" };
+    return { success: true, data };
   }
   catch (e) {
     return { success: false, message: "Something went wrong" };
