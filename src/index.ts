@@ -1,6 +1,6 @@
 import { load } from "cheerio";
-import { facebookRegex, instagramRegex, normalizeURL, tiktokRegex } from "./utils";
-import type { SnapSaveDownloaderData, SnapSaveDownloaderResponse } from "./types";
+import { facebookRegex, fixThumbnail, instagramRegex, normalizeURL, tiktokRegex } from "./utils";
+import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderResponse } from "./types";
 
 export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse> => {
   try {
@@ -76,15 +76,14 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
     const html = await response.text();
     const decode = decryptSnapSave(html);
     const $ = load(decode);
-    const data: SnapSaveDownloaderData = {
-      media: []
-    };
+    const data: SnapSaveDownloaderData = {};
+    const media: SnapSaveDownloaderMedia[] = [];
 
     if ($("table.table").length || $("article.media > figure").length) {
-      const thumbnail = $("article.media > figure").find("img").attr("src");
       const description = $("span.video-des").text().trim();
-      data.thumbnail = thumbnail;
+      const preview = $("article.media > figure").find("img").attr("src");
       data.description = description;
+      data.preview = preview;
       if ($("table.table").length) {
         $("tbody > tr").each((_, el) => {
           const $el = $(el);
@@ -95,35 +94,54 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
           if (shouldRender) {
             _url = "https://snapsave.app" + /get_progressApi\('(.*?)'\)/.exec(_url || "")?.[1] || _url;
           }
-          data.media.push({
+          media.push({
             resolution,
-            shouldRender,
-            url: _url
+            ...shouldRender ? { shouldRender } : {},
+            url: _url,
+            type: resolution ? "video" : "image"
+          });
+        });
+      }
+      else if ($("div.card").length) {
+        $("div.card").each((_, el) => {
+          const cardBody = $(el).find("div.card-body");
+          const aText = cardBody.find("a").text().trim();
+          const url = cardBody.find("a").attr("href");
+          const type = aText === "Download Photo" ? "image" : "video";
+          media.push({
+            url,
+            type
           });
         });
       }
       else {
-        let _url = $("a").attr("href") || $("button").attr("onclick");
-        data.media.push({
-          url: _url
+        const url = $("a").attr("href") || $("button").attr("onclick");
+        const aText = $("a").text().trim();
+        const type = aText === "Download Photo" ? "image" : "video";
+        media.push({
+          url,
+          type
         });
       }
     }
-    else {
-      $("div.download-items__thumb").each((_, tod) => {
-        const thumbnail = $(tod).find("img").attr("src");
-        data.thumbnail = thumbnail;
-        $("div.download-items__btn").each((_, ol) => {
-          let _url = $(ol).find("a").attr("href");
-          if (!/https?:\/\//.test(_url || "")) _url = `https://snapsave.app${_url}`;
-          data.media.push({
-            url: _url
-          });
+    else if ($("div.download-items").length) {
+      $("div.download-items").each((_, el) => {
+        const itemThumbnail = $(el).find("div.download-items__thumb > img").attr("src");
+        const itemBtn = $(el).find("div.download-items__btn");
+        const url = itemBtn.find("a").attr("href");
+        const spanText = itemBtn.find("span").text().trim();
+        const type = spanText === "Download Photo" ? "image" : "video";
+        media.push({
+          url,
+          ...type === "video" ? {
+            thumbnail: itemThumbnail ? fixThumbnail(itemThumbnail) : undefined
+          } : {},
+          type
         });
       });
     }
-    if (!data.media.length) return { success: false, message: "Blank data" };
-    return { success: true, data };
+    if (!media.length) return { success: false, message: "Blank data" };
+    return { success: true, data: { ...data, media } };
   }
   catch (e) {
     return { success: false, message: "Something went wrong" };

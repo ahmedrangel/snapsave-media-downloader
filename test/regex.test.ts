@@ -58,6 +58,8 @@ describe("TikTok regex", () => {
     "https://tiktok.com/@user_name/video/1234567890123456789",
     "https://www.tiktok.com/@user_name/video/1234567890123456789/",
     "https://www.tiktok.com/@user_name/video/1234567890123456789?is_from_webapp=1&sender_device=pc",
+    "https://www.tiktok.com/@user_name/photo/1234567890123456789/",
+    "https://www.tiktok.com/@user_name/photo/1234567890123456789?is_from_webapp=1&sender_device=pc",
     "https://www.tiktok.com/t/ZTFErV3e5",
     "https://www.tiktok.com/t/ZTFErV3e5/",
     "https://vm.tiktok.com/ZAbc8d911",

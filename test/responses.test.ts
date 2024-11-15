@@ -8,18 +8,19 @@ describe("SnapSave successful responses", () => {
     const mockData: SnapSaveDownloaderResponse = {
       success: true,
       data: {
-        thumbnail: "https://example.com/thumbnail.jpg",
         description: "This is a description",
+        preview: "https://example.com/preview.jpg",
         media: [
           {
             resolution: "720p (HD)",
-            shouldRender: false,
-            url: "https://example.com/video-720.mp4"
+            url: "https://example.com/video-720.mp4",
+            type: "video"
           },
           {
             resolution: "360p (SD)",
             shouldRender: true,
-            url: "https://example.com/video-360.mp4"
+            url: "https://example.com/video-360.mp4",
+            type: "video"
           }
         ]
       }
@@ -33,10 +34,12 @@ describe("SnapSave successful responses", () => {
     const mockData: SnapSaveDownloaderResponse = {
       success: true,
       data: {
-        thumbnail: "https://example.com/thumbnail.jpg",
+        preview: "https://example.com/preview.jpg",
         media: [
           {
-            url: "https://example.com/video.mp4"
+            url: "https://example.com/video.mp4",
+            thumbnail: "https://example.com/thumbnail.jpg",
+            type: "video"
           }
         ]
       }
@@ -50,11 +53,12 @@ describe("SnapSave successful responses", () => {
     const mockData: SnapSaveDownloaderResponse = {
       success: true,
       data: {
-        thumbnail: "https://example.com/thumbnail.jpg",
         description: "This is a description",
+        preview: "https://example.com/preview.jpg",
         media: [
           {
-            url: "https://example.com/video.mp4"
+            url: "https://example.com/video.mp4",
+            type: "video"
           }
         ]
       }
