@@ -1,3 +1,24 @@
+## v2.1.0
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.0.2...v2.1.0)
+
+### 🚀 Enhancements
+
+- ⚠️  Add support for instagram and tiktok carousel + add media type + rename previous thumbnail to preview and add a thumbnail for media videos ([104a0c2](https://github.com/ahmedrangel/snapsave-media-downloader/commit/104a0c2))
+
+### 📦 Build
+
+- Use unbuild builder and adjust ts compiler ([#1](https://github.com/ahmedrangel/snapsave-media-downloader/pull/1))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Add support for instagram and tiktok carousel + add media type + rename previous thumbnail to preview and add a thumbnail for media videos ([104a0c2](https://github.com/ahmedrangel/snapsave-media-downloader/commit/104a0c2))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+- Yizack Rangel ([@Yizack](http://github.com/Yizack))
+
 ## v2.0.2
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.0.1...v2.0.2)

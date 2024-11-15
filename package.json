@@ -1,6 +1,6 @@
 {
   "name": "snapsave-media-downloader",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Download Instagram, Facebook and TikTok media using snapsave.app downloader",
   "type": "module",
   "scripts": {
@@ -8,7 +8,7 @@
     "prepack": "pnpm build",
     "lint": "eslint .",
     "playground": "node playground/index.js",
-    "release": "npm run lint && npm run test && npm run build && changelogen --release && npm publish && git push --follow-tags",
+    "release": "npm run lint && npm run test && npm run build && changelogen --release",
     "test": "vitest run --reporter=verbose",
     "test:types": "tsc --noEmit"
   },
