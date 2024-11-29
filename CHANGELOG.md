@@ -1,3 +1,19 @@
+## v2.1.1
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.1.0...v2.1.1)
+
+### 🩹 Fixes
+
+- **instagram:** Support /share/ links ([a305231](https://github.com/ahmedrangel/snapsave-media-downloader/commit/a305231))
+
+### 🏡 Chore
+
+- Update deps ([665726d](https://github.com/ahmedrangel/snapsave-media-downloader/commit/665726d))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](http://github.com/ahmedrangel))
+
 ## v2.1.0
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.0.2...v2.1.0)
