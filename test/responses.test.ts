@@ -67,6 +67,25 @@ describe("SnapSave successful responses", () => {
     const result = await snapsave("https://www.tiktok.com/@user_name/video/1234567890123456789");
     expect(result).toEqual(mockData);
   });
+
+  it("Twitter response", async () => {
+    const mockData: SnapSaveDownloaderResponse = {
+      success: true,
+      data: {
+        description: "This is a description",
+        preview: "https://example.com/preview.jpg",
+        media: [
+          {
+            url: "https://example.com/video.mp4",
+            type: "video"
+          }
+        ]
+      }
+    };
+    (snapsave as Mock).mockResolvedValue(mockData);
+    const result = await snapsave("https://x.com/user_name/status/1234567890123456789");
+    expect(result).toEqual(mockData);
+  });
 });
 
 describe("SnapSave error responses", () => {

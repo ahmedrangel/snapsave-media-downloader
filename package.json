@@ -1,7 +1,7 @@
 {
   "name": "snapsave-media-downloader",
   "version": "2.1.1",
-  "description": "Download Instagram, Facebook and TikTok media using snapsave.app downloader",
+  "description": "Download Instagram, Facebook, TikTok and Twitter (X) media using snapsave.app downloader",
   "type": "module",
   "scripts": {
     "build": "unbuild",
@@ -16,6 +16,8 @@
     "instagram",
     "facebook",
     "tiktok",
+    "twitter",
+    "x",
     "downloader",
     "media",
     "photo",
@@ -53,17 +55,17 @@
     }
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^2.11.0",
-    "@types/node": "^22.10.1",
-    "@typescript-eslint/parser": "^8.16.0",
-    "changelogen": "^0.5.7",
-    "eslint": "^9.14.0",
-    "typescript": "^5.7.2",
-    "unbuild": "^2.0.0",
-    "vitest": "^2.1.6"
+    "@stylistic/eslint-plugin": "^4.2.0",
+    "@types/node": "^22.15.19",
+    "@typescript-eslint/parser": "^8.32.1",
+    "changelogen": "^0.6.1",
+    "eslint": "^9.27.0",
+    "typescript": "^5.8.3",
+    "unbuild": "^3.5.0",
+    "vitest": "^3.1.4"
   },
   "dependencies": {
     "cheerio": "^1.0.0"
   },
-  "packageManager": "pnpm@9.14.4"
+  "packageManager": "pnpm@10.11.0"
 }

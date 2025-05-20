@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { facebookRegex, instagramRegex, normalizeURL, tiktokRegex } from "../src/utils";
+import { facebookRegex, instagramRegex, normalizeURL, tiktokRegex, twitterRegex } from "../src/utils";
 
 describe("Facebook regex", () => {
   const urls = [
@@ -75,6 +75,23 @@ describe("TikTok regex", () => {
   });
 });
 
+describe("Twitter regex", () => {
+  const urls = [
+    "https://twitter.com/user_name/status/1234567890123456789",
+    "https://x.com/user_name/status/1234567890123456789",
+    "https://twitter.com/i/web/status/1234567890123456789",
+    "https://x.com/i/web/status/1234567890123456789",
+    "https://twitter.com/user_name/status/1234567890123456789/photo/1",
+    "https://x.com/user_name/status/1234567890123456789/photo/1"
+  ];
+
+  urls.forEach((url, index) => {
+    it(`should match twitter video url: type ${index + 1}`, () => {
+      expect(url.match(twitterRegex)).toBeTruthy();
+    });
+  });
+});
+
 describe("Normalize URL", () => {
   it("should normalize: type 1", () => {
     expect(normalizeURL("https://tiktok.com")).toStrictEqual("https://www.tiktok.com");
@@ -84,5 +101,8 @@ describe("Normalize URL", () => {
   });
   it("should normalize: type 3", () => {
     expect(normalizeURL("https://vm.tiktok.com")).toStrictEqual("https://vm.tiktok.com");
+  });
+  it("should normalize: type 4", () => {
+    expect(normalizeURL("https://x.com")).toStrictEqual("https://x.com");
   });
 });

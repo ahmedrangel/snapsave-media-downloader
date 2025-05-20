@@ -1,6 +1,6 @@
 # Snapsave Media Downloader
 
-Download Instagram, Facebook and TikTok media using snapsave.app downloader
+Download Instagram, Facebook, TikTok and Twitter (X) media using snapsave.app downloader
 
 ## Install dependency
 ```bash
@@ -74,6 +74,22 @@ Output example (TikTok):
     "media": [
       {
         "url": "httpss://snapxcdn.com/v2/?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
+        "type": "video"
+      }
+    ]
+  }
+}
+```
+Output example (Twitter):
+```json
+{
+  "success": true,
+  "data": {
+    "description": "X description example",
+    "preview": "https://pbs.twimg.com/amplify_video_thumb/1234567890123456789/img/9IPCFIfDAb7WJ2cL.jpg",
+    "media": [
+      {
+        "url": "https://d.rapidcdn.app/v2?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9...",
         "type": "video"
       }
     ]
