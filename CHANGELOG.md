@@ -1,3 +1,19 @@
+## v2.2.0
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.1.1...v2.2.0)
+
+### 🚀 Enhancements
+
+- Add twitter snapsave downloader ([4e39ec4](https://github.com/ahmedrangel/snapsave-media-downloader/commit/4e39ec4))
+
+### 🏡 Chore
+
+- **release:** V2.1.1 ([bd10c0e](https://github.com/ahmedrangel/snapsave-media-downloader/commit/bd10c0e))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v2.1.1
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.1.0...v2.1.1)
