@@ -1,11 +1,11 @@
-function decodeSnapApp(
+function decodeSnapApp (
   args: string[]
 ): string {
   let [h, u, n, t, e, r] = args;
   const tNum: number = Number(t);
   const eNum: number = Number(e);
 
-  function decode(d: string, e: number, f: number): string {
+  function decode (d: string, e: number, f: number): string {
     const g: string[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/".split("");
     const hArr: string[] = g.slice(0, e);
     const iArr: string[] = g.slice(0, f);
@@ -40,7 +40,8 @@ function decodeSnapApp(
     try {
       const bytes = new Uint8Array(str.split("").map(char => char.charCodeAt(0)));
       return new TextDecoder("utf-8").decode(bytes);
-    } catch (e) {
+    }
+    catch (e) {
       return str;
     }
   };
