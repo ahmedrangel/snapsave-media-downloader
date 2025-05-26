@@ -55,8 +55,8 @@
     }
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^4.2.0",
-    "@types/node": "^22.15.19",
+    "@stylistic/eslint-plugin": "^4.4.0",
+    "@types/node": "^22.15.21",
     "@typescript-eslint/parser": "^8.32.1",
     "changelogen": "^0.6.1",
     "eslint": "^9.27.0",
