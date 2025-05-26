@@ -1,6 +1,6 @@
 {
   "name": "snapsave-media-downloader",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "Download Instagram, Facebook, TikTok and Twitter (X) media using snapsave.app downloader",
   "type": "module",
   "scripts": {

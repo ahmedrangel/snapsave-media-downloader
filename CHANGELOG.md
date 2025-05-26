@@ -1,3 +1,24 @@
+## v2.2.1
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.2.0...v2.2.1)
+
+### 🩹 Fixes
+
+- Tiktok downloads ([#2](https://github.com/ahmedrangel/snapsave-media-downloader/pull/2))
+- Support vt.tiktok.com urls ([90c17c1](https://github.com/ahmedrangel/snapsave-media-downloader/commit/90c17c1))
+
+### 🏡 Chore
+
+- Lint ([6f9de96](https://github.com/ahmedrangel/snapsave-media-downloader/commit/6f9de96))
+- Update deps ([8ca80d9](https://github.com/ahmedrangel/snapsave-media-downloader/commit/8ca80d9))
+- Lint ([0b0508f](https://github.com/ahmedrangel/snapsave-media-downloader/commit/0b0508f))
+- **release:** V2.2.1 ([1242643](https://github.com/ahmedrangel/snapsave-media-downloader/commit/1242643))
+
+### ❤️ Contributors
+
+- Ahmed Rangel (@ahmedrangel)
+- Folarin Lawal (@Madflows)
+
 ## v2.2.0
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.1.1...v2.2.0)
