@@ -1,7 +1,7 @@
 {
   "name": "blank-downloader",
   "version": "2.2.0",
-  "description": "Download Instagram, Facebook, TikTok and Twitter (X) media using snapsave.app downloader.",
+  "description": "Download Instagram, Facebook, TikTok and Twitter (X) media using snapsave.app downloader. Using this for now till merges accepts my pull request",
   "type": "module",
   "scripts": {
     "build": "unbuild",
@@ -26,7 +26,7 @@
     "image",
     "download"
   ],
-  "author": "ahmedrangel",
+  "author": "Folarin Lawal",
   "license": "MIT",
   "exports": {
     ".": {
@@ -41,15 +41,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ahmedrangel/snapsave-media-downloader.git"
+    "url": "git+https://github.com/madflows/snapsave-media-downloader.git"
   },
-  "homepage": "https://github.com/ahmedrangel/snapsave-media-downloader#readme",
+  "homepage": "https://github.com/madflows/snapsave-media-downloader#readme",
   "bugs": {
     "url": "https://github.com/ahmedrangel/snapsave-media-downloader/issues"
   },
   "changelog": {
     "repo": {
-      "repo": "ahmedrangel/snapsave-media-downloader",
+      "repo": "madflows/snapsave-media-downloader",
       "provider": "github",
       "domain": "github.com"
     }

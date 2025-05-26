@@ -1,6 +1,7 @@
 # Snapsave Media Downloader
 
 Download Instagram, Facebook, TikTok and Twitter (X) media using snapsave.app downloader
+Originally made by [ahmedrangel](https://github.com/ahmedrangel), I cloned the repository to fix a bug with the script being unable to download from tiktok due to an api change from tiktok.
 
 ## Install dependency
 ```bash
