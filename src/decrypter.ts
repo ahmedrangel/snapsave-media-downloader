@@ -1,40 +1,53 @@
-function decodeSnapApp (args: string[]) {
+function decodeSnapApp(
+  args: string[]
+): string {
   let [h, u, n, t, e, r] = args;
-  function decode (d: number, e: number, f: number) {
-    const g = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/".split("");
-    const h = g.slice(0, e);
-    const i = g.slice(0, f);
-    // @ts-expect-error
-    let j = d.split("").reverse().reduce(function (a: string, b: string, c: number) {
-      if (h.indexOf(b) !== -1)
-        return a += h.indexOf(b) * (Math.pow(e, c));
+  const tNum: number = Number(t);
+  const eNum: number = Number(e);
+
+  function decode(d: string, e: number, f: number): string {
+    const g: string[] = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/".split("");
+    const hArr: string[] = g.slice(0, e);
+    const iArr: string[] = g.slice(0, f);
+    let j: number = d.split("").reverse().reduce((a: number, b: string, c: number) => {
+      const idx = hArr.indexOf(b);
+      if (idx !== -1) return a + idx * (Math.pow(e, c));
+      return a;
     }, 0);
-    let k = "";
+    let k: string = "";
     while (j > 0) {
-      k = i[j % f] + k;
-      j = (j - (j % f)) / f;
+      k = iArr[j % f] + k;
+      j = Math.floor(j / f);
     }
     return k || "0";
   }
-  r = "";
-  for (let i = 0, len = h.length; i < len; i++) {
+
+  let result = "";
+  for (let i = 0, len = h.length; i < len;) {
     let s = "";
-    while (h[i] !== n[Number(e)]) {
-      s += h[i]; i++;
+    while (i < len && h[i] !== n[eNum]) {
+      s += h[i];
+      i++;
     }
+    i++; // skip delimiter
     for (let j = 0; j < n.length; j++)
       s = s.replace(new RegExp(n[j], "g"), j.toString());
-      // @ts-expect-error
-    r += String.fromCharCode(decode(s, e, 10) - t);
+    result += String.fromCharCode(Number(decode(s, eNum, 10)) - tNum);
   }
 
-  const fixEncoding = (str: string) => {
-    const bytes = new Uint8Array(str.split("").map(char => char.charCodeAt(0)));
-    return new TextDecoder("utf-8").decode(bytes);
+  // Optional: fix encoding for UTF-8
+  const fixEncoding = (str: string): string => {
+    try {
+      const bytes = new Uint8Array(str.split("").map(char => char.charCodeAt(0)));
+      return new TextDecoder("utf-8").decode(bytes);
+    } catch (e) {
+      return str;
+    }
   };
 
-  return fixEncoding(r);
+  return fixEncoding(result);
 }
+
 function getEncodedSnapApp (data: string) {
   return data.split("decodeURIComponent(escape(r))}(")[1]
     .split("))")[0]
@@ -46,7 +59,15 @@ function getDecodedSnapSave (data: string) {
     .split("\"; document.getElementById(\"inputData\").remove(); ")[0]
     .replace(/\\(\\)?/g, "");
 }
+function getDecodedSnaptik (data: string) {
+  return data.split("$(\"#download\").innerHTML = \"")[1]
+    .split("\"; document.getElementById(\"inputData\").remove(); ")[0]
+    .replace(/\\(\\)?/g, "");
+}
 
 export function decryptSnapSave (data: string) {
   return getDecodedSnapSave(decodeSnapApp(getEncodedSnapApp(data)));
+}
+export function decryptSnaptik (data: string) {
+  return getDecodedSnaptik(decodeSnapApp(getEncodedSnapApp(data)));
 }

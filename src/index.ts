@@ -1,18 +1,50 @@
 import { load } from "cheerio";
 import { facebookRegex, fixThumbnail, instagramRegex, normalizeURL, tiktokRegex, twitterRegex, userAgent } from "./utils";
 import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderResponse } from "./types";
-import { decryptSnapSave } from "./decrypter";
+import { decryptSnapSave, decryptSnaptik } from "./decrypter";
 
 export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse> => {
   try {
-    const regexList = [facebookRegex, instagramRegex, tiktokRegex, twitterRegex];
+    const regexList = [facebookRegex, instagramRegex, twitterRegex, tiktokRegex];
     const isValid = regexList.some(regex => url.match(regex));
     if (!isValid) return { success: false, message: "Invalid URL" };
     const isTwitter = url.match(twitterRegex);
+    const isTiktok = url.match(tiktokRegex);
 
     const formData = new URLSearchParams();
     formData.append("url", normalizeURL(url));
 
+    if (isTiktok) {
+      const response = await fetch("https://snaptik.app/", {
+        headers: {
+          "user-agent": userAgent
+        }
+      });
+      const homeHtml = await response.text();
+      const $ = load(homeHtml);
+      const token = $("input[name='token']").val() as string;
+      formData.append("token", token);
+      const response2 = await fetch("https://snaptik.app/abc2.php", {
+        method: "POST",
+        headers: {
+          "accept": "*/*",
+          "content-type": "application/x-www-form-urlencoded",
+          "origin": "https://snaptik.app",
+          "referer": "https://snaptik.app/",
+          "user-agent": userAgent
+        },
+        body: formData
+      });
+      const data = await response2.text();
+      const decode = decryptSnaptik(data);
+      const $3 = load(decode);
+      const _url = $3("#download >.download-box > .video-links > a").attr("href");
+      const description = $3(".video-title").text().trim();
+      const preview = $3("#thumbnail").attr("src");
+      const spanText = $3(".video-links > a.button.download-file").text().trim();
+      const type = spanText === "Download photo" ? "image" : "video";
+      return { success: true, data: { description, preview, media: [{ url: _url, type }] } };
+    }
     if (isTwitter) {
       const response = await fetch("https://twitterdownloader.snapsave.app/", {
         headers: {
