@@ -67,7 +67,7 @@ describe("TikTok regex", () => {
     "https://m.tiktok.com/v/1234567890123456789",
     "https://m.tiktok.com/v/1234567890123456789/",
     "https://vt.tiktok.com/ZAbc8d911",
-    "https://vt.tiktok.com/ZAbc8d911/",
+    "https://vt.tiktok.com/ZAbc8d911/"
   ];
 
   urls.forEach((url, index) => {
