@@ -1,3 +1,15 @@
+## v2.3.1
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.0...v2.3.1)
+
+### 📖 Documentation
+
+- Add options example to README ([843214d](https://github.com/ahmedrangel/snapsave-media-downloader/commit/843214d))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v2.3.0
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.2.1...v2.3.0)
