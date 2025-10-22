@@ -18,9 +18,18 @@ export interface SnapSaveDownloaderResponse {
   data?: SnapSaveDownloaderData;
 }
 
-export interface SpanSaveDownloaderOptions {
+export interface SnapSaveDownloaderOptions {
+  /**
+   * @default 1
+   */
   retry: number;
-  /** Delay between retries in milliseconds. */
+  /**
+   * Delay between retries in milliseconds.
+   * @default 500
+   */
   retryDelay: number;
+  /**
+   * @default "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+   */
   userAgent?: string;
 }

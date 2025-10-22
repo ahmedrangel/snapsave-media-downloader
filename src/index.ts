@@ -1,10 +1,10 @@
 import { load } from "cheerio";
 import { $fetch } from "ofetch";
 import { facebookRegex, fixThumbnail, instagramRegex, normalizeURL, tiktokRegex, twitterRegex, userAgent } from "./utils";
-import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderResponse, SpanSaveDownloaderOptions } from "./types";
+import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderOptions, SnapSaveDownloaderResponse } from "./types";
 import { decryptSnapSave, decryptSnaptik } from "./decrypter";
 
-export const snapsave = async (url: string, options?: SpanSaveDownloaderOptions): Promise<SnapSaveDownloaderResponse> => {
+export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions): Promise<SnapSaveDownloaderResponse> => {
   const retry = { retry: options?.retry || 1, retryDelay: options?.retryDelay || 500 };
   const UA = options?.userAgent || userAgent;
   try {
