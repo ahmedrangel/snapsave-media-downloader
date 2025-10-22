@@ -55,17 +55,18 @@
     }
   },
   "devDependencies": {
-    "@stylistic/eslint-plugin": "^4.4.0",
-    "@types/node": "^22.15.21",
-    "@typescript-eslint/parser": "^8.32.1",
-    "changelogen": "^0.6.1",
-    "eslint": "^9.27.0",
-    "typescript": "^5.8.3",
-    "unbuild": "^3.5.0",
-    "vitest": "^3.1.4"
+    "@stylistic/eslint-plugin": "^5.5.0",
+    "@types/node": "^24.9.1",
+    "@typescript-eslint/parser": "^8.46.2",
+    "changelogen": "^0.6.2",
+    "eslint": "^9.38.0",
+    "typescript": "^5.9.3",
+    "unbuild": "^3.6.1",
+    "vitest": "^3.2.4"
   },
   "dependencies": {
-    "cheerio": "^1.0.0"
+    "cheerio": "^1.1.2",
+    "ofetch": "^1.4.1"
   },
-  "packageManager": "pnpm@10.11.0"
+  "packageManager": "pnpm@10.19.0"
 }

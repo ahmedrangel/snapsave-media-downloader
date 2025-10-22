@@ -1,9 +1,12 @@
 import { load } from "cheerio";
+import { $fetch } from "ofetch";
 import { facebookRegex, fixThumbnail, instagramRegex, normalizeURL, tiktokRegex, twitterRegex, userAgent } from "./utils";
-import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderResponse } from "./types";
+import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SpanSaveDownloaderOptions, SnapSaveDownloaderResponse } from "./types";
 import { decryptSnapSave, decryptSnaptik } from "./decrypter";
 
-export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse> => {
+export const snapsave = async (url: string, options?: SpanSaveDownloaderOptions): Promise<SnapSaveDownloaderResponse> => {
+  const retry = { retry: options?.retry || 1, retryDelay: options?.retryDelay || 500 };
+  const UA = options?.userAgent || userAgent;
   try {
     const regexList = [facebookRegex, instagramRegex, twitterRegex, tiktokRegex];
     const isValid = regexList.some(regex => url.match(regex));
@@ -15,27 +18,27 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
     formData.append("url", normalizeURL(url));
 
     if (isTiktok) {
-      const response = await fetch("https://snaptik.app/", {
-        headers: {
-          "user-agent": userAgent
-        }
+      const homeHtml = await $fetch("https://snaptik.app/", {
+        headers: { "user-agent": UA },
+        responseType: "text",
+        ...retry
       });
-      const homeHtml = await response.text();
       const $ = load(homeHtml);
       const token = $("input[name='token']").val() as string;
       formData.append("token", token);
-      const response2 = await fetch("https://snaptik.app/abc2.php", {
+      const data = await $fetch("https://snaptik.app/abc2.php", {
         method: "POST",
         headers: {
           "accept": "*/*",
           "content-type": "application/x-www-form-urlencoded",
           "origin": "https://snaptik.app",
           "referer": "https://snaptik.app/",
-          "user-agent": userAgent
+          "user-agent": UA
         },
-        body: formData
+        body: formData,
+        responseType: "text",
+        ...retry
       });
-      const data = await response2.text();
       const decode = decryptSnaptik(data);
       const $3 = load(decode);
       const _url = $3(".download-box > .video-links > a").attr("href");
@@ -46,28 +49,27 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
       return { success: true, data: { description, preview, media: [{ url: _url, type }] } };
     }
     if (isTwitter) {
-      const response = await fetch("https://twitterdownloader.snapsave.app/", {
-        headers: {
-          "user-agent": userAgent
-        }
+      const homeHtml = await $fetch("https://twitterdownloader.snapsave.app/", {
+        headers: { "user-agent": UA },
+        responseType: "text"
       });
-      const homeHtml = await response.text();
       const $ = load(homeHtml);
       const token = $("input[name='token']").val() as string;
       formData.append("token", token);
-      const response2 = await fetch("https://twitterdownloader.snapsave.app/action.php", {
+      const response2 = await $fetch("https://twitterdownloader.snapsave.app/action.php", {
         method: "POST",
         headers: {
           "accept": "*/*",
           "content-type": "application/x-www-form-urlencoded",
           "origin": "https://twitterdownloader.snapsave.app",
           "referer": "https://twitterdownloader.snapsave.app/",
-          "user-agent": userAgent
+          "user-agent": UA
         },
-        body: formData
+        responseType: "json",
+        body: formData,
+        ...retry
       });
-      const data = await response2.json();
-      const html2 = data?.data;
+      const html2 = response2.data;
       const $2 = load(html2);
       const _url = $2("#download-block > .abuttons > a").attr("href");
       const description = $2(".videotikmate-middle > p > span").text().trim();
@@ -77,19 +79,21 @@ export const snapsave = async (url: string): Promise<SnapSaveDownloaderResponse>
       return { success: true, data: { description, preview, media: [{ url: _url, type }] } };
     }
 
-    const response = await fetch("https://snapsave.app/action.php?lang=en", {
+    const html = await $fetch("https://snapsave.app/action.php", {
       method: "POST",
+      query: { lang: "en" },
       headers: {
         "accept": "*/*",
         "content-type": "application/x-www-form-urlencoded",
         "origin": "https://snapsave.app",
         "referer": "https://snapsave.app/",
-        "user-agent": userAgent
+        "user-agent": UA
       },
-      body: formData
+      body: formData,
+      responseType: "text",
+      ...retry
     });
 
-    const html = await response.text();
     const decode = decryptSnapSave(html);
     const $ = load(decode);
     const data: SnapSaveDownloaderData = {};

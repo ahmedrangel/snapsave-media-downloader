@@ -17,3 +17,10 @@ export interface SnapSaveDownloaderResponse {
   message?: string;
   data?: SnapSaveDownloaderData;
 }
+
+export interface SpanSaveDownloaderOptions {
+  retry: number;
+  /** Delay between retries in milliseconds. */
+  retryDelay: number;
+  userAgent?: string;
+}
