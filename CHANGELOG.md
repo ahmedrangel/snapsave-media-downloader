@@ -1,3 +1,24 @@
+## v2.3.0
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.2.1...v2.3.0)
+
+### 🚀 Enhancements
+
+- Add ofetch + add request options + update deps ([6de79aa](https://github.com/ahmedrangel/snapsave-media-downloader/commit/6de79aa))
+
+### 🏡 Chore
+
+- Update pnpm workspace and eslint config, remove .npmrc ([1e22584](https://github.com/ahmedrangel/snapsave-media-downloader/commit/1e22584))
+- Lint ([e159870](https://github.com/ahmedrangel/snapsave-media-downloader/commit/e159870))
+
+### 🤖 CI
+
+- Up versions ([9c211a5](https://github.com/ahmedrangel/snapsave-media-downloader/commit/9c211a5))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v2.2.1
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.2.0...v2.2.1)
