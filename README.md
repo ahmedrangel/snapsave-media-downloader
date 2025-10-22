@@ -96,3 +96,11 @@ Output example (Twitter):
   }
 }
 ```
+Options
+```js
+await snapsave("https://www.instagram.com/p/C51YHfWJwHK/", {
+  retry: 3,
+  retryDelay: 500, // ms
+  userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+});
+```
