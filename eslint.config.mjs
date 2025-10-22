@@ -39,7 +39,7 @@ export default [
       "@stylistic/keyword-spacing": ["error", { after: true, before: true }],
       "@stylistic/object-curly-newline": "off",
       "@stylistic/object-curly-spacing": ["error", "always"],
-      "@stylistic/object-property-newline": ["error", { allowMultiplePropertiesPerLine: true }],
+      "@stylistic/object-property-newline": ["error", { allowAllPropertiesOnSameLine: true }],
       "@stylistic/one-component-per-file": "off",
       "@stylistic/require-default-prop": "off",
       "@stylistic/space-in-parens": ["error", "never"],

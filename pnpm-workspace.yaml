@@ -1,2 +1,7 @@
+ignoreWorkspaceRootCheck: true
+autoInstallPeers: true
+shamefullyHoist: true
+strictPeerDependencies: false
+
 packages:
   - playground
