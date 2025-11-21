@@ -7,6 +7,7 @@ export const userAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 export const normalizeURL = (url: string) => {
   if (url.match(twitterRegex)) return url;
+  if (url.match(instagramRegex)) url = url.replace(/\?.*$/, '');
   return /^(https?:\/\/)(?!www\.)[a-z0-9]+/i.test(url) ? url.replace(/^(https?:\/\/)([^./]+\.[^./]+)(\/.*)?$/, "$1www.$2$3") : url;
 };
 
