@@ -1,3 +1,15 @@
+## v2.3.3
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.2...v2.3.3)
+
+### 🩹 Fixes
+
+- Update instagram regex ([0ea08ab](https://github.com/ahmedrangel/snapsave-media-downloader/commit/0ea08ab))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v2.3.2
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.1...v2.3.2)
