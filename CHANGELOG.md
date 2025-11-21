@@ -1,3 +1,19 @@
+## v2.3.2
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.1...v2.3.2)
+
+### 🩹 Fixes
+
+- Strip query params from instagram URLs ([55ccb5c](https://github.com/ahmedrangel/snapsave-media-downloader/commit/55ccb5c))
+
+### 🏡 Chore
+
+- Update deps ([f2a1afa](https://github.com/ahmedrangel/snapsave-media-downloader/commit/f2a1afa))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v2.3.1
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.0...v2.3.1)
