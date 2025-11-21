@@ -42,8 +42,9 @@ describe("Instagram regex", () => {
     "https://www.instagram.com/stories/user_name",
     "https://www.instagram.com/stories/user_name/",
     "https://www.instagram.com/stories/user_name/1234567890123456",
-    "https://www.instagram.com/stories/user_name/1234567890123456/"
-
+    "https://www.instagram.com/stories/user_name/1234567890123456/",
+    "https://instagram.com/user_name/p/CcDeFg9hiJK",
+    "https://www.instagram.com/user_name/reel/1234567890123456/"
   ];
 
   urls.forEach((url, index) => {
