@@ -148,9 +148,10 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
       $("div.download-items").each((_, el) => {
         const itemThumbnail = $(el).find("div.download-items__thumb > img").attr("src");
         const itemBtn = $(el).find("div.download-items__btn");
-        const url = itemBtn.find("a").attr("href");
+        const downloadUrl = itemBtn.find("a").attr("href");
         const spanText = itemBtn.find("span").text().trim();
         const type = spanText === "Download Photo" ? "image" : "video";
+        const url = type === "image" ? itemThumbnail : downloadUrl;
         media.push({
           url,
           ...type === "video" ? {
