@@ -56,6 +56,8 @@ function getEncodedSnapApp (data: string) {
     .map(v => v.replace(/"/g, "").trim());
 }
 function getDecodedSnapSave (data: string) {
+  const errorMessage = data?.split("document.querySelector(\"#alert\").innerHTML = \"")?.[1]?.split("\";")?.[0]?.trim();
+  if (errorMessage) throw new Error(errorMessage);
   return data.split("getElementById(\"download-section\").innerHTML = \"")[1]
     .split("\"; document.getElementById(\"inputData\").remove(); ")[0]
     .replace(/\\(\\)?/g, "");

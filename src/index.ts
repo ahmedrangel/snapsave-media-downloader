@@ -165,6 +165,6 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
     return { success: true, data: { ...data, media } };
   }
   catch (e) {
-    return { success: false, message: "Something went wrong" };
+    return { success: false, message: e instanceof Error ? e.message : "Something went wrong" };
   }
 };
