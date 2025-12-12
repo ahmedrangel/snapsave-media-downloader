@@ -1,3 +1,22 @@
+## v2.3.4
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.3...v2.3.4)
+
+### 🩹 Fixes
+
+- Use thumbnail source for images to fix image duplication issue ([#4](https://github.com/ahmedrangel/snapsave-media-downloader/pull/4))
+
+### 🏡 Chore
+
+- Lint ([aba3716](https://github.com/ahmedrangel/snapsave-media-downloader/commit/aba3716))
+- Display message error from snapsave ([9b6e7c8](https://github.com/ahmedrangel/snapsave-media-downloader/commit/9b6e7c8))
+- Update deps ([868bc04](https://github.com/ahmedrangel/snapsave-media-downloader/commit/868bc04))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+- Sam Esfahani ([@ssesfahani](https://github.com/ssesfahani))
+
 ## v2.3.3
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.2...v2.3.3)
