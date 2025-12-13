@@ -1,5 +1,7 @@
 # Snapsave Media Downloader
 
+[![npm version][npm-version-src]][npm-version-href]
+
 Download Instagram, Facebook, TikTok and Twitter (X) media using snapsave.app downloader
 
 ## Install dependency
@@ -104,3 +106,7 @@ await snapsave("https://www.instagram.com/p/C51YHfWJwHK/", {
   userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
 });
 ```
+
+<!-- Badges -->
+[npm-version-src]: https://img.shields.io/npm/v/snapsave-media-downloader.svg?style=flat
+[npm-version-href]: https://npmjs.com/package/snapsave-media-downloader
