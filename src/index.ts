@@ -1,5 +1,6 @@
 import { load } from "cheerio";
 import { $fetch } from "ofetch";
+import { ProxyAgent } from "undici";
 import { facebookRegex, fixThumbnail, instagramRegex, normalizeURL, tiktokRegex, twitterRegex, userAgent } from "./utils";
 import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderOptions, SnapSaveDownloaderResponse } from "./types";
 import { decryptSnapSave, decryptSnaptik } from "./decrypter";
@@ -7,6 +8,7 @@ import { decryptSnapSave, decryptSnaptik } from "./decrypter";
 export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions): Promise<SnapSaveDownloaderResponse> => {
   const retry = { retry: options?.retry || 1, retryDelay: options?.retryDelay || 500 };
   const UA = options?.userAgent || userAgent;
+  const dispatcher = options?.proxy ? new ProxyAgent(options.proxy) : undefined;
   try {
     const regexList = [facebookRegex, instagramRegex, twitterRegex, tiktokRegex];
     const isValid = regexList.some(regex => url.match(regex));
@@ -21,7 +23,8 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
       const homeHtml = await $fetch("https://snaptik.app/", {
         headers: { "user-agent": UA },
         responseType: "text",
-        ...retry
+        ...retry,
+        ...dispatcher ? { dispatcher } : {}
       });
       const $ = load(homeHtml);
       const token = $("input[name='token']").val() as string;
@@ -37,7 +40,8 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
         },
         body: formData,
         responseType: "text",
-        ...retry
+        ...retry,
+        ...dispatcher ? { dispatcher } : {}
       });
       const decode = decryptSnaptik(data);
       const $3 = load(decode);
@@ -51,7 +55,8 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
     if (isTwitter) {
       const homeHtml = await $fetch("https://twitterdownloader.snapsave.app/", {
         headers: { "user-agent": UA },
-        responseType: "text"
+        responseType: "text",
+        ...dispatcher ? { dispatcher } : {}
       });
       const $ = load(homeHtml);
       const token = $("input[name='token']").val() as string;
@@ -67,7 +72,8 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
         },
         responseType: "json",
         body: formData,
-        ...retry
+        ...retry,
+        ...dispatcher ? { dispatcher } : {}
       });
       const html2 = response2.data;
       const $2 = load(html2);
@@ -91,7 +97,8 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
       },
       body: formData,
       responseType: "text",
-      ...retry
+      ...retry,
+      ...dispatcher ? { dispatcher } : {}
     });
 
     const decode = decryptSnapSave(html);
