@@ -98,12 +98,40 @@ Output example (Twitter):
   }
 }
 ```
-Options
+## Options
 ```js
 await snapsave("https://www.instagram.com/p/C51YHfWJwHK/", {
   retry: 3,
   retryDelay: 500, // ms
-  userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36"
+  userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+  proxy: "http://proxy.example.com:8080" // Optional proxy URL
+});
+```
+
+### Using Proxy
+You can use a proxy server for all requests by providing the `proxy` option:
+
+```js
+import { snapsave } from "snapsave-media-downloader";
+
+// HTTP Proxy
+const result = await snapsave("https://www.tiktok.com/@user/video/1234567890", {
+  proxy: "http://proxy.example.com:8080"
+});
+
+// HTTPS Proxy
+const result2 = await snapsave("https://www.instagram.com/p/C51YHfWJwHK/", {
+  proxy: "https://secure-proxy.example.com:8443"
+});
+
+// Proxy with authentication
+const result3 = await snapsave("https://twitter.com/user/status/1234567890", {
+  proxy: "http://username:password@proxy.example.com:8080"
+});
+
+// SOCKS5 Proxy
+const result4 = await snapsave("https://www.facebook.com/watch/?v=1234567890", {
+  proxy: "socks5://proxy.example.com:1080"
 });
 ```
 
