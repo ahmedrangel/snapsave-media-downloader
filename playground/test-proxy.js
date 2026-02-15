@@ -25,10 +25,12 @@ for (const url of testUrls) {
       if (result.data?.description) {
         console.log("Description:", result.data.description.substring(0, 100) + "...");
       }
-    } else {
+    }
+    else {
       console.log("❌ Failed:", result.message);
     }
-  } catch (error) {
+  }
+  catch (error) {
     console.log("❌ Error:", error.message);
   }
 }
