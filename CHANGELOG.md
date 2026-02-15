@@ -1,3 +1,25 @@
+## v2.4.0
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.4...v2.4.0)
+
+### 🚀 Enhancements
+
+- **proxy:** Add proxy support for all requests ([#5](https://github.com/ahmedrangel/snapsave-media-downloader/pull/5))
+
+### 📖 Documentation
+
+- Add npm badge ([3674d8a](https://github.com/ahmedrangel/snapsave-media-downloader/commit/3674d8a))
+
+### 🏡 Chore
+
+- **eslint:** Lint + allow console.log ([9752908](https://github.com/ahmedrangel/snapsave-media-downloader/commit/9752908))
+- **package:** Update deps ([f75cd99](https://github.com/ahmedrangel/snapsave-media-downloader/commit/f75cd99))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+- TonySeedy ([@TonySeedy](https://github.com/TonySeedy))
+
 ## v2.3.4
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.3...v2.3.4)
