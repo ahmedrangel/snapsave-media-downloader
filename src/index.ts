@@ -3,7 +3,7 @@ import { $fetch } from "ofetch";
 import { ProxyAgent } from "undici";
 import { facebookRegex, fixThumbnail, instagramRegex, normalizeURL, tiktokRegex, twitterRegex, userAgent } from "./utils";
 import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderOptions, SnapSaveDownloaderResponse } from "./types";
-import { decryptSnapSave, decryptSnaptik } from "./decrypter";
+import { decryptSnapSave, decryptSnaptikToken, solveSnaptikChallenge } from "./decrypter";
 
 export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions): Promise<SnapSaveDownloaderResponse> => {
   const retry = { retry: options?.retry || 1, retryDelay: options?.retryDelay || 500 };
@@ -20,37 +20,41 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
     formData.append("url", normalizeURL(url));
 
     if (isTiktok) {
-      const homeHtml = await $fetch("https://snaptik.app/", {
-        headers: { "user-agent": UA },
-        responseType: "text",
-        ...retry,
-        ...dispatcher ? { dispatcher } : {}
-      });
-      const $ = load(homeHtml);
-      const token = $("input[name='token']").val() as string;
-      formData.append("token", token);
-      const data = await $fetch("https://snaptik.app/abc2.php", {
+      const tokenRes = await $fetch<{ id: string; p: string }>("https://snaptik.app/api/token", {
         method: "POST",
         headers: {
-          "accept": "*/*",
-          "content-type": "application/x-www-form-urlencoded",
-          "origin": "https://snaptik.app",
-          "referer": "https://snaptik.app/",
+          "accept": "application/json",
+          "content-type": "application/json",
+          "x-requested-with": "XMLHttpRequest",
           "user-agent": UA
         },
-        body: formData,
-        responseType: "text",
+        responseType: "json",
         ...retry,
         ...dispatcher ? { dispatcher } : {}
       });
-      const decode = decryptSnaptik(data);
-      const $3 = load(decode);
-      const _url = $3(".download-box > .video-links > a").attr("href");
-      const description = $3(".video-title").text().trim();
-      const preview = $3("#thumbnail").attr("src");
-      const spanText = $3(".video-links > a.button.download-file").text().trim();
-      const type = spanText === "Download photo" ? "image" : "video";
-      return { success: true, data: { description, preview, media: [{ url: _url, type }] } };
+      const decryptedJson = await decryptSnaptikToken(tokenRes.id, tokenRes.p);
+      const challenge = JSON.parse(decryptedJson);
+      const result = solveSnaptikChallenge(challenge);
+      const verify = `${tokenRes.id}:${result}:${challenge._e}:${challenge._h}`;
+      const extractRes = await $fetch<{ data?: { downloadUrl?: string; thumbnail?: string; title?: string } }>(
+        `https://snaptik.app/api/extract?url=${encodeURIComponent(normalizeURL(url))}`,
+        {
+          headers: {
+            "accept": "application/json",
+            "x-requested-with": "XMLHttpRequest",
+            "x-verify": verify,
+            "user-agent": UA
+          },
+          responseType: "json",
+          ...retry,
+          ...dispatcher ? { dispatcher } : {}
+        }
+      );
+      const _url = extractRes?.data?.downloadUrl;
+      const description = extractRes?.data?.title;
+      const preview = extractRes?.data?.thumbnail;
+      if (!_url) return { success: false, message: "Blank data" };
+      return { success: true, data: { description, preview, media: [{ url: _url, type: "video" }] } };
     }
     if (isTwitter) {
       const homeHtml = await $fetch("https://twitterdownloader.snapsave.app/", {

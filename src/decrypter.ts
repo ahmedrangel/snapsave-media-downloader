@@ -1,3 +1,43 @@
+// --- Snaptik new API helpers (snaptik.app redesigned their API to use AES-256-CBC) ---
+
+const snaptikTokenKey = (() => {
+  // Key is assembled at runtime to avoid hardcoding it as a plain string.
+  // Mirrors the same obfuscation used by the snaptik.app client.
+  const prefix = [115, 110, 52, 112].map(x => String.fromCharCode(x)).join(""); // "sn4p"
+  const suffix = (() => {
+    const t = "s0j^";
+    let h = "";
+    for (let i = 0; i < t.length; i++) h += String.fromCharCode(t.charCodeAt(i) + 1);
+    return h; // "t1k_"
+  })();
+  const mid = Buffer.from("djNyMQ==", "base64").toString(); // "v3r1"
+  return prefix + suffix + mid + "fy2026";
+})();
+
+export async function decryptSnaptikToken (id: string, payload: string): Promise<string> {
+  const { createHash, createDecipheriv } = await import("crypto");
+  const data = Buffer.from(payload, "base64");
+  const iv = data.subarray(0, 16);
+  const encrypted = data.subarray(16);
+  const hash = createHash("sha256").update(`${snaptikTokenKey}:${id}`).digest();
+  const decipher = createDecipheriv("aes-256-cbc", hash, iv);
+  const decrypted = Buffer.concat([decipher.update(encrypted), decipher.final()]);
+  return decrypted.toString("utf8");
+}
+
+export function solveSnaptikChallenge (t: Record<string, any>): number {
+  switch (t.t) {
+    case "b": return ((t.a ^ t.b) >> t.s) & 255;
+    case "r": return t.n.reduce((h: number, f: number) => h + f, 0) * 2 + 1;
+    case "c": return t.w.charCodeAt(t.i) * t.m;
+    case "m": return ((t.a + t.b) % 100) * t.c;
+    case "n": return t.a * t.b + t.b * t.c + t.c * t.a - t.a;
+    default: throw new Error("Unknown snaptik challenge type");
+  }
+}
+
+// --- End Snaptik new API helpers ---
+
 function decodeSnapApp (
   args: string[]
 ): string {
@@ -71,6 +111,11 @@ function getDecodedSnaptik (data: string) {
 export function decryptSnapSave (data: string) {
   return getDecodedSnapSave(decodeSnapApp(getEncodedSnapApp(data)));
 }
+/**
+ * @deprecated The old snaptik.app HTML-based flow was removed.
+ * This function is kept temporarily and may fail.
+ * Use `decryptSnaptikToken` instead.
+ */
 export function decryptSnaptik (data: string) {
   return getDecodedSnaptik(decodeSnapApp(getEncodedSnapApp(data)));
 }
