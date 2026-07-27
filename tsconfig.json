@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "esnext",
     "module": "Preserve",
     "resolveJsonModule": true,
-    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "allowJs": true,
@@ -15,5 +14,5 @@
     "noImplicitOverride": true,
     "noEmit": true
   },
-  "include": ["src", "test"]
+  "include": ["src/**/*", "test/**/*"]
 }

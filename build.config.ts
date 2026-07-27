@@ -1,7 +1,6 @@
-import { defineBuildConfig } from "unbuild";
+import { defineBuildConfig } from "obuild/config";
 
 export default defineBuildConfig({
-  declaration: true,
   entries: [
     "./src/index"
   ]

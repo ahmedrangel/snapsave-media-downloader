@@ -1,7 +1,10 @@
+minimumReleaseAge: 0
 ignoreWorkspaceRootCheck: true
-autoInstallPeers: true
 shamefullyHoist: true
 strictPeerDependencies: false
 
 packages:
   - playground
+
+allowBuilds:
+  esbuild: false
