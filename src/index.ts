@@ -20,7 +20,7 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
     formData.append("url", normalizeURL(url));
 
     if (isTiktok) {
-      const tokenRes = await $fetch<{ id: string; p: string }>("https://snaptik.app/api/token", {
+      const tokenRes = await $fetch<{ id: string, p: string }>("https://snaptik.app/api/token", {
         method: "POST",
         headers: {
           "accept": "application/json",
@@ -36,7 +36,7 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
       const challenge = JSON.parse(decryptedJson);
       const result = solveSnaptikChallenge(challenge);
       const verify = `${tokenRes.id}:${result}:${challenge._e}:${challenge._h}`;
-      const extractRes = await $fetch<{ data?: { downloadUrl?: string; thumbnail?: string; title?: string } }>(
+      const extractRes = await $fetch<{ data?: { downloadUrl?: string, thumbnail?: string, title?: string } }>(
         `https://snaptik.app/api/extract?url=${encodeURIComponent(normalizeURL(url))}`,
         {
           headers: {
