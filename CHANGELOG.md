@@ -1,3 +1,20 @@
+## v2.4.1
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.4.0...v2.4.1)
+
+### 🩹 Fixes
+
+- **tiktok:** Migrate from HTML parser to snaptik REST API ([#8](https://github.com/ahmedrangel/snapsave-media-downloader/pull/8))
+
+### 🏡 Chore
+
+- Update deps + migrate package builder to obuild ([acbe749](https://github.com/ahmedrangel/snapsave-media-downloader/commit/acbe749))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+- Diones Souza ([@dionesrosa](https://github.com/dionesrosa))
+
 ## v2.4.0
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.3.4...v2.4.0)
