@@ -56,18 +56,18 @@
   },
   "devDependencies": {
     "@stylistic/eslint-plugin": "^5.10.0",
-    "@types/node": "^26.1.2",
-    "@typescript-eslint/parser": "^8.65.0",
+    "@types/node": "^26.5.1",
+    "@typescript-eslint/parser": "^8.70.0",
     "changelogen": "^0.6.2",
-    "eslint": "^10.8.0",
-    "obuild": "^0.4.38",
+    "eslint": "^10.10.0",
+    "obuild": "^0.4.40",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.10"
+    "vitest": "^5.0.0"
   },
   "dependencies": {
     "cheerio": "^1.2.0",
     "ofetch": "^1.5.1",
-    "undici": "^8.9.0"
+    "undici": "^8.10.2"
   },
-  "packageManager": "pnpm@11.17.0"
+  "packageManager": "pnpm@12.4.1"
 }
