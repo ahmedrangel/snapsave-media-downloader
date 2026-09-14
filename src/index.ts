@@ -5,7 +5,7 @@ import { facebookRegex, fixThumbnail, instagramRegex, normalizeURL, tiktokRegex,
 import type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderOptions, SnapSaveDownloaderResponse } from "./types";
 import { decryptSnapSave, decryptSnaptikToken, solveSnaptikChallenge } from "./decrypter";
 
-export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions): Promise<SnapSaveDownloaderResponse> => {
+const snapsave = async (url: string, options?: SnapSaveDownloaderOptions): Promise<SnapSaveDownloaderResponse> => {
   const retry = { retry: options?.retry || 1, retryDelay: options?.retryDelay || 500 };
   const UA = options?.userAgent || userAgent;
   const dispatcher = options?.proxy ? new ProxyAgent(options.proxy) : undefined;
@@ -179,3 +179,6 @@ export const snapsave = async (url: string, options?: SnapSaveDownloaderOptions)
     return { success: false, message: e instanceof Error ? e.message : "Something went wrong" };
   }
 };
+
+export { snapsave };
+export type { SnapSaveDownloaderData, SnapSaveDownloaderMedia, SnapSaveDownloaderOptions, SnapSaveDownloaderResponse };
