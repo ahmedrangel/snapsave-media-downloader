@@ -1,3 +1,19 @@
+## v2.5.1
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.5.0...v2.5.1)
+
+### 🏡 Chore
+
+- Update deps ([e4b0abb](https://github.com/ahmedrangel/snapsave-media-downloader/commit/e4b0abb))
+
+### 🤖 CI
+
+- **workflows:** Migrate pnpm/setup and use node --run ([f3a3b24](https://github.com/ahmedrangel/snapsave-media-downloader/commit/f3a3b24))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v2.5.0
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.4.1...v2.5.0)
