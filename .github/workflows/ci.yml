@@ -33,34 +33,26 @@ jobs:
 
     steps:
       - uses: actions/checkout@v7
-      - run: corepack enable
-      - uses: actions/setup-node@v7
+      - uses: pnpm/setup@v2
         with:
-          node-version: latest
-          cache: "pnpm"
-
-      - name: 📦 Install dependencies
-        run: pnpm install
+          runtime: node@lts
+          cache: true
 
       - name: 🔎 Lint
-        run: pnpm lint
+        run: node --run lint
 
   test:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v7
-      - run: corepack enable
-      - uses: actions/setup-node@v7
+      - uses: pnpm/setup@v2
         with:
-          node-version: latest
-          cache: "pnpm"
-
-      - name: 📦 Install dependencies
-        run: pnpm install
+          runtime: node@lts
+          cache: true
 
       - name: 🧪 Run test suite
-        run: pnpm test
+        run: node --run test
 
       - name: 🧪 Test types
-        run: pnpm test:types
+        run: node --run test:types

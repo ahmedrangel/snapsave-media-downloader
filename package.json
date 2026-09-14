@@ -7,6 +7,7 @@
     "build": "obuild",
     "prepack": "pnpm build",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "playground": "node playground/index.js",
     "release": "npm run lint && npm run test && npm run build && changelogen --release",
     "test": "vitest run --reporter=verbose",
