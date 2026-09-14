@@ -1,3 +1,15 @@
+## v2.5.0
+
+[compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.4.1...v2.5.0)
+
+### 🚀 Enhancements
+
+- **exports:** Expose snapsave downloader types ([#10](https://github.com/ahmedrangel/snapsave-media-downloader/pull/10))
+
+### ❤️ Contributors
+
+- Ahmed Rangel ([@ahmedrangel](https://github.com/ahmedrangel))
+
 ## v2.4.1
 
 [compare changes](https://github.com/ahmedrangel/snapsave-media-downloader/compare/v2.4.0...v2.4.1)
