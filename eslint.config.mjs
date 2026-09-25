@@ -1,22 +1,22 @@
+import { resolve } from "node:path";
 import stylistic from "@stylistic/eslint-plugin";
 import tslint from "typescript-eslint";
+import importPlugin from "eslint-plugin-import-x";
+import { defineConfig, includeIgnoreFile } from "eslint/config";
 
-export default [
+export default defineConfig([
+  includeIgnoreFile(resolve(".gitignore")),
   {
     files: ["**/*.js", "**/*.mjs", "**/*.ts"],
-    ignores: [
-      "node_modules/**/*",
-      "dist/**/*"
-    ],
     plugins: {
       "@stylistic": stylistic,
-      "@typescript-eslint": tslint.plugin
+      "@typescript-eslint": tslint.plugin,
+      "import": importPlugin
     },
     languageOptions: {
       parser: tslint.parser
     },
     rules: {
-      "camelcase": ["error"],
       "no-console": ["error", { allow: ["info", "log", "warn"] }],
       "@stylistic/indent": ["error", 2, { SwitchCase: 1 }],
       "@stylistic/linebreak-style": ["error", process.platform === "win32" ? "windows" : "unix"],
@@ -47,7 +47,14 @@ export default [
       "@stylistic/template-curly-spacing": "error",
       "@stylistic/quote-props": ["error", "consistent-as-needed"],
       "sort-imports": ["error", { ignoreDeclarationSort: true }],
+      "import/first": "error",
+      "import/no-duplicates": "error",
+      "import/no-mutable-exports": "error",
+      "import/no-named-default": "error",
+      "import/no-self-import": "error",
+      "import/order": "error",
+      "import/newline-after-import": ["error", { count: 1 }],
       "@typescript-eslint/consistent-type-imports": "error"
     }
   }
-];
+]);
