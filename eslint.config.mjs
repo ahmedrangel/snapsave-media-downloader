@@ -1,5 +1,5 @@
 import stylistic from "@stylistic/eslint-plugin";
-import parserTs from "@typescript-eslint/parser";
+import tslint from "typescript-eslint";
 
 export default [
   {
@@ -12,7 +12,7 @@ export default [
       "@stylistic": stylistic
     },
     languageOptions: {
-      parser: parserTs
+      parser: tslint.parser
     },
     rules: {
       "camelcase": ["error"],
