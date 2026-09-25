@@ -1,5 +1,6 @@
 import { type Mock, describe, expect, it, vi } from "vitest";
 import { snapsave } from "../src";
+import type * as spansaveSrc from "../src";
 import type { SnapSaveDownloaderResponse } from "../src/types";
 
 vi.mock("../src", () => ({ snapsave: vi.fn() }));
@@ -90,7 +91,7 @@ describe("SnapSave successful responses", () => {
 
 describe("SnapSave error responses", () => {
   it("Invalid URL", async () => {
-    const { snapsave } = await vi.importActual<typeof import("../src")>("../src");
+    const { snapsave } = await vi.importActual<typeof spansaveSrc>("../src");
     const result = await snapsave("https://www.example.com/invalid");
     expect(result).toEqual({ success: false, message: "Invalid URL" });
   });
