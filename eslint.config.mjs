@@ -9,7 +9,8 @@ export default [
       "dist/**/*"
     ],
     plugins: {
-      "@stylistic": stylistic
+      "@stylistic": stylistic,
+      "@typescript-eslint": tslint.plugin
     },
     languageOptions: {
       parser: tslint.parser
@@ -45,7 +46,8 @@ export default [
       "@stylistic/space-in-parens": ["error", "never"],
       "@stylistic/template-curly-spacing": "error",
       "@stylistic/quote-props": ["error", "consistent-as-needed"],
-      "sort-imports": ["error", { ignoreDeclarationSort: true }]
+      "sort-imports": ["error", { ignoreDeclarationSort: true }],
+      "@typescript-eslint/consistent-type-imports": "error"
     }
   }
 ];
